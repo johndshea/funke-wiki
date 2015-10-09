@@ -9,5 +9,5 @@ server.get('/', function (req, res, next) {
 });
 
 server.listen(PORT, function () {
-  console.log("Server us up on port: ", PORT)
+  console.log("Server us up on port: ", PORT);
 });
