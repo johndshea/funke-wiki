@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fünke Wiki</title>
+  <!--Google Icon Fonts-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Thanks to the Materialize team for their excellent framework -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css" media="screen,projection">
+  <link rel="stylesheet" href="/stylesheets/app.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <%- include header %>
+    <!-- Displays a flash message from the prior page, if it exists -->
+    <% if (flash.message) { %>
+    <%= flash.message %>
+  <% } %>
+  <%- body %>
+  <%- include footer %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+  <script src="/scripts/app.js"></script>
+</body>
+</html>
