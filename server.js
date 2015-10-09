@@ -1,4 +1,4 @@
-var express = require(express);
+var express = require('express');
     // required for heroku to work
     PORT    = process.env.PORT || 1337,
     server  = express(),
