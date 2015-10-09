@@ -1,4 +1,4 @@
-/* << controllers/cats.js >>
+/* << controllers/articles.js >>
   CATS CONTROLLER: HERE THERE BE ROUTES
 
   When we include the cat router in server.js, it will be via the command
@@ -10,7 +10,7 @@
 
 var express = require('express'),
     router  = express.Router(),
-    Cat     = require('./models/cat.js');
+    Cat     = require('../models/article.js');
 
 router.get('/', function (req, res) {
   Cat.find({}, function (err, allCats) {
