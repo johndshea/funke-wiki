@@ -9,7 +9,11 @@ var articleSchema = new Schema({
   content: String,
   // need to find a way to ingest this data and interpret it into an array instead
   // look at dating app for code you wrote before
-  tags: String
+  tags: Array,
+  // right now, this sets the date once when the article is created and never
+  // updates it. I need to figure out a way to have it reset with each edit.
+  // Try looking at the http://www.w3schools.com/js/js_dates.asp page.
+  last_edited: { type : Date, default: Date.now }
 });
 
 /* make the model */

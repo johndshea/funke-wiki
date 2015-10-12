@@ -1,1 +1,7 @@
-<h2>Looks like you're looking for Cat number <%= id %></h2>
+<%= article.title %> <br/>
+<%= article.author %> <br/>
+<%= article.tags %> <br/>
+<%= article.content %> <br/>
+<%= article.last_edited %> <br/>
+<hr/>
+<a href="/articles/<%= article._id %>/edit" class="waves-effect waves-light btn-large blue" id="sign_up">Edit this article</a>

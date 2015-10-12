@@ -1,10 +1,23 @@
-<form action="/cats" method="post">
-  <h2>Let's edit cat number <%= id %>!</h2>
-  <input type='text' name='cat[name]' placeholder="name"><br/>
-  <input type='text' name='cat[color]' placeholder="color"><br/>
-  <h3>Cat age: <span id="cat-age"></span></h3>
-  <input type='range' name='cat[age]' min="0" max="30" step="1"><br/>
-  <input type='submit'>
+<form action="/articles/<%= article._id %>?_method=PATCH" method="post">
+  <h2>Article Creation Page</h2>
+<label>Article title</label>
+  <input type='text'
+         name='article[title]'
+         value="<%= article.title %>"><br/>
+ <label>Article content goes here</label>
+  <textarea name='article[content]'><%= article.content %></textarea><br/>
+  <!-- probably need to put some client-side javascript here to check the boxes that
+  show up in the article tags array. -->
+  <label>Tags</label><br/>
+  <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
+  <label for="funny">funny</label>
+  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
+  <label for="true">true</label>
+  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
+  <label for="sarcastic">sarcastic</label>
+  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
+  <label for="sincere">sincere</label><br/>
+  <input type='submit' class="btn-large blue">
 </form>
-
-<script src="/scripts/catForm.js"></script>
+<form action="/articles/<%= article._id %>?_method=DELETE" method="post"><br/>
+  <input type="submit" class="btn-large red" value="Delete this article"></form>
