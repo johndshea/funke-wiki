@@ -1,24 +1,24 @@
-/* import necessary libraries */
+    /* import necessary libraries */
 var mongoose = require('mongoose'),
     server   = require('./lib/create-server')(),
-    /* set universal constants */
+    /* set universal variables, required for Heroku to work */
     PORT     = process.env.PORT || 1337,
     MONGOURI = process.env.MONGOLAB_URI || "mongodb://localhost:27017",
     dbname   = "funke_wiki";
 
-/* include routers for specific routes */
-server.use('/session', require('./controllers/session'));
-server.use('/users', require('./controllers/users'));
-server.use('/articles', require('./controllers/articles'));
+/* include routers for specific routes. Are the .js file extensions necesary? */
+server.use('/session', require('./controllers/session.js'));
+server.use('/users', require('./controllers/users.js'));
+server.use('/articles', require('./controllers/articles.js'));
 
-/* define other routes */
+/* define default welcome page route */
 server.get('/', function (req, res) {
   res.render('welcome');
   res.end();
 });
 
-/* spin it up */
+/* start it up */
 mongoose.connect(MONGOURI + "/" + dbname);
 server.listen(PORT, function () {
-  console.log("Server us up on port: ", PORT);
+  console.log("Server is up on port: ", PORT);
 });

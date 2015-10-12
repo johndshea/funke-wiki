@@ -1,57 +1,56 @@
 /* << controllers/articles.js >>
-  CATS CONTROLLER: HERE THERE BE ROUTES
-
-  When we include the cat router in server.js, it will be via the command
-      server.use('/cats', catRouter);
-  Every route below will be prefaced with '/cats', so if we define
-      router.get('/:id', function (res, req) {});
-  it will really be run when we hit '/cats/:id'
+  Include this controller with: server.use('/articles', articleRouter);
+  Every route below will be prefaced with '/articles'
 */
 
 var express = require('express'),
     router  = express.Router(),
-    Cat     = require('../models/article.js');
+    Article = require('../models/article.js');
 
+// INDEX
 router.get('/', function (req, res) {
-  Cat.find({}, function (err, allCats) {
-    res.render('cats/index', {
-      cats: allCats
+  Article.find({}, function (err, allArticles) {
+    res.render('articles/index', {
+      articles: allArticles
     });
   });
 });
 
+// NEW
 router.get('/new', function (req, res) {
-  // CAT new FORM page
-  res.render('cats/new');
+  res.render('articles/new');
 });
 
+// CREATE
 router.post('/', function (req, res) {
-  // CAT create action + REDIRECT
   console.log(req.body);
-
-  Cat.new(req.body.cat, function (err, newCat) {
+  Article.new(req.body.article, function (err, newArticle) {
     if (err) {
-      res.redirect(302, '/cats/new');
+      res.redirect(302, '/articles/new');
     } else {
-      res.redirect(302, '/cats');
+      res.redirect(302, '/articles');
     }
   });
 });
 
+// SHOW
 router.get('/:id', function (req, res) {
-  // CAT show page
+  //  show page
 });
 
+// EDIT
 router.get('/:id/edit', function (req, res) {
-  // CAT edit FORM page
+  //  edit FORM page
 });
 
+// UPDATE
 router.patch('/:id', function (req, res) {
-  // CAT update action + REDIRECT
+  //  update action + REDIRECT
 });
 
+// DELETE
 router.delete('/:id', function (req, res) {
-  // CAT delete action + REDIRECT
+  //  delete action + REDIRECT
 });
 
 module.exports = router;

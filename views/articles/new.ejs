@@ -1,10 +1,11 @@
-<form action="/cats" method="post">
-  <h2>Let's make a new cat!</h2>
-  <input type='text' name='cat[name]' placeholder="name"><br/>
-  <input type='text' name='cat[color]' placeholder="color"><br/>
-  <h3>Cat age: <span id="cat-age"></span></h3>
-  <input type='range' name='cat[age]' min="0" max="30" step="1"><br/>
+<form action="/articles" method="post">
+  <h2>Article Creation Page</h2>
+  <input type='text'
+         name='article[title]'
+         placeholder="article title"><br/>
+ <label>Article content goes here</label>
+  <textarea name='article[content]'></textarea><br/>
+  <!-- <input type='text' name='article[author]' placeholder="author_name"><br/> -->
+
   <input type='submit'>
 </form>
-
-<script src="/scripts/catForm.js"></script>
