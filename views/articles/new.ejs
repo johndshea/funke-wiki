@@ -1,11 +1,20 @@
 <form action="/articles" method="post">
   <h2>Article Creation Page</h2>
+<label>Article title</label>
   <input type='text'
          name='article[title]'
          placeholder="article title"><br/>
+ <!-- need to replace this with code that inserts the currently-logged-in user's ID -->
+ <label>Author</label>
+   <input type='text'
+          name='article[author]'
+          placeholder="author name"><br/>
  <label>Article content goes here</label>
   <textarea name='article[content]'></textarea><br/>
   <!-- <input type='text' name='article[author]' placeholder="author_name"><br/> -->
-
-  <input type='submit'>
+  <label>Tags</label>
+    <input type='text'
+           name='article[title]'
+           placeholder="tags, comma separated"><br/>
+  <input type='submit' class="btn-large blue">
 </form>

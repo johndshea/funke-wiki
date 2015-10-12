@@ -3,25 +3,17 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 /* define the schema */
-var catSchema = new Schema({
-  name:  String,
-  age:   Number,
-  color: String
+var articleSchema = new Schema({
+  title:  String,
+  author:   String,
+  content: String,
+  // need to find a way to ingest this data and interpret it into an array instead
+  // look at dating app for code you wrote before
+  tags: String
 });
 
-/* optional prototype methods */
-catSchema.methods.meow = function () {
-  return this.name + " is meowing...";
-};
+/* make the model */
+var Article = mongoose.model('Article', articleSchema);
 
-catSchema.methods.friends = function (callback) {
-  return this.model.find({
-    color: this.color
-  }, callback);
-};
-
-/* finally make the cat model */
-var Cat = mongoose.model('Cat', catSchema);
-
-/* remember to export the cat model, rather than an object */
-module.exports = Cat;
+/* export the model */
+module.exports = Article;

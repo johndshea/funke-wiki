@@ -9,10 +9,14 @@ var express = require('express'),
 
 // INDEX
 router.get('/', function (req, res) {
-  Article.find({}, function (err, allArticles) {
-    res.render('articles/index', {
-      articles: allArticles
-    });
+  Article.find({}, function (err, allArticlesArray) {
+    if (err) {
+      console.log("Retrieval error: ", err);
+    } else {
+      res.render('articles/index', {
+        articles: allArticlesArray
+      });
+    }
   });
 });
 
@@ -24,8 +28,10 @@ router.get('/new', function (req, res) {
 // CREATE
 router.post('/', function (req, res) {
   console.log(req.body);
-  Article.new(req.body.article, function (err, newArticle) {
+  var newArticle = new Article(req.body.article);
+  newArticle.save(newArticle, function (err, addedArticle) {
     if (err) {
+      console.log("There was a database error: ", err);
       res.redirect(302, '/articles/new');
     } else {
       res.redirect(302, '/articles');
