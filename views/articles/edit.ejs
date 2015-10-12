@@ -5,7 +5,7 @@
          name='article[title]'
          value="<%= article.title %>"><br/>
  <label>Article content goes here</label>
-  <textarea name='article[content]'><%= article.content %></textarea><br/>
+ <textarea id='article-content' name='article[content]'><%= article.content %></textarea><br/>
   <!-- probably need to put some client-side javascript here to check the boxes that
   show up in the article tags array. -->
   <label>Tags</label><br/>
@@ -17,7 +17,17 @@
   <label for="sarcastic">sarcastic</label>
   <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
   <label for="sincere">sincere</label><br/>
+  <label>Last Edited</label>
+    <!-- note: as of now, this timestamp shows the time the edit form was loaded, not
+    the time the submit button was pressed. fix. -->
+    <input type='text'
+           name='article[last_edited]'
+           value="<%= new Date(); %>"><br/>
   <input type='submit' class="btn-large blue">
 </form>
 <form action="/articles/<%= article._id %>?_method=DELETE" method="post"><br/>
   <input type="submit" class="btn-large red" value="Delete this article"></form>
+<script src='/scripts/autosize.min.js'></script>
+  <script>
+     autosize(document.getElementById('article-content'));
+  </script>

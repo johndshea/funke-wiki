@@ -1,20 +1,22 @@
+<!-- Thanks to the Materialize team for their excellent framework, which I use here -->
+<!-- textarea autosize NPM package (c) Jack Moore (http://www.jacklmoore.com/autosize/) -->
+<!-- I also drew  from the Materialize team's "starter template", found at
+http://materializecss.com/templates/starter-template/preview.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Fünke Wiki</title>
-  <!--Google Icon Fonts-->
+  <!--Google Icon Fonts - look through and make sure you don't need the font folder you currently have -->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Thanks to the Materialize team for their excellent framework, which I use here -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css" media="screen,projection">
-    <!-- I also drew  from the Materialize team's "starter template", found at
-    http://materializecss.com/templates/starter-template/preview.html -->
+
   <link rel="stylesheet" href="/stylesheets/app.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
   <%- include header %>
-    
+
   <div class="container">
     <!-- Displays a flash message from the prior page, if it exists. Credit to Shorty (Matt Short) for this idea -->
     <% if (flash.message) { %>

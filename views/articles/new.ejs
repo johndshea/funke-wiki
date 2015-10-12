@@ -10,7 +10,9 @@
           name='article[author]'
           placeholder="author name"><br/>
  <label>Article content goes here</label>
-  <textarea name='article[content]' placeholder="Remember, be nice!"></textarea><br/>
+  <textarea id='article-content'
+            name='article[content]'
+            placeholder="Remember, be nice!"></textarea><br/>
   <label>Tags</label><br/>
   <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
   <label for="funny">funny</label>
@@ -22,3 +24,7 @@
   <label for="sincere">sincere</label><br/>
   <input type='submit' class="btn-large blue">
 </form>
+<script src='/scripts/autosize.min.js'></script>
+  <script>
+     autosize(document.getElementById('article-content'));
+  </script>
