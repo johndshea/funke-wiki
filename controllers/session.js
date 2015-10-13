@@ -2,33 +2,33 @@ var express = require('express'),
     router  = express.Router(),
     User    = require('../models/user');
 
-router.get('/new', function (req, res) {
-  res.render('session/new');
-});
-
 router.post('/', function (req, res) {
-  var userParams = req.body.user;
+  var attempt = req.body.user;
 
-  User.findOne(userParams, function (err, user) {
+  User.findOne({email: attempt.email}, function (err, user) {
     if (err) {
       req.session.flash.message = "Some error has occurred.";
-      res.redirect(302, 'session/new');
-    } else if (user) {
+      res.redirect(302, 'users/login');
+    } else if (user && user.password == attempt.password) {
       req.session.userId = user._id;
       req.session.flash.message = "Thanks for signing in.";
-      res.redirect(302, 'users/' + user._id);
+      res.redirect(302, 'articles');
+    } else if (user) {
+      req.session.flash.message = "Wrong Password";
+      res.redirect(302, 'users/login');
     } else {
       req.session.flash.message = "Email and password combination does not exist / match.";
-      res.redirect(302, 'session/new');
+      res.redirect(302, 'users/login');
     }
   });
 });
 
 router.delete('/', function (req, res) {
   delete req.session.userId;
-
   req.session.flash.message = "Thanks for signing out.";
-  res.redirect(302, '/session/new');
+  res.redirect(302, '/');
 });
 
 module.exports = router;
+
+// using users/login route in place of session/new route. More intuitive for user.

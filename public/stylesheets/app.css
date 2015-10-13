@@ -31,3 +31,47 @@ main {
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+.logoutbutton1{
+	background:none;
+  border:none;
+  font-size:1em;
+  color:white;
+}
+
+.logoutbutton2{
+	background:none;
+  border:none;
+  font-size:1em;
+  color:black;
+}
+
+@media print {
+   body {
+      color: #000;
+      background: #fff;
+   }
+	 nav, aside {
+      display: none;
+   }
+	 body, article {
+		 width: 100%;
+		 margin: 0;
+		 padding: 0;
+	 }
+	 @page {
+		 margin: 2cm;
+	 }
+	 h2, h3 {
+		 page-break-after: avoid;
+	 }
+	 img {
+		 max-width: 100% !important;
+	 }
+	 article {
+		 page-break-before: always;
+	 }
+	 ul, img {
+		 page-break-inside: avoid;
+	 }
+}

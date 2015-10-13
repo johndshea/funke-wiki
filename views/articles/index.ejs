@@ -1,8 +1,14 @@
-Hello there! This is a list of articles
-  <% articles.forEach(function (article, i) { %>
-    <div class="article">
-      <h3>
-        <a href="/articles/<%= article._id %>"> <%= article.title %> </a>  <%= article.author %> <%= article.tags %> <br/>
-      </h3>
+<% articles.forEach(function (article, i) { %>
+    <div class="article card blue">
+      <a href="/articles/<%= article._id %>"><div class="card-content white-text">
+        <h5><%= article.title %></h5>
+        Author: <%= article.authorName %><br/>
+        Tags: <%= article.tags.join(', ') %> <br/>
+        Last Edited: <%= article.last_edited %> <br/>
+      </div></a>
+      <div class="card-action">
+        <a href="/articles/<%= article._id %>">View</a>
+        <a href="/articles/<%= article._id %>/edit">Edit</a>
+      </div>
     </div>
   <% }) %>

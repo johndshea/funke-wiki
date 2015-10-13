@@ -1,5 +1,4 @@
 <form action="/articles/<%= article._id %>?_method=PATCH" method="post">
-  <h2>Article Creation Page</h2>
 <label>Article title</label>
   <input type='text'
          name='article[title]'
@@ -9,14 +8,7 @@
   <!-- probably need to put some client-side javascript here to check the boxes that
   show up in the article tags array. -->
   <label>Tags</label><br/>
-  <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
-  <label for="funny">funny</label>
-  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
-  <label for="true">true</label>
-  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
-  <label for="sarcastic">sarcastic</label>
-  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
-  <label for="sincere">sincere</label><br/>
+  <input type="text" name="article[tags]" value="funny"/>
   <label>Last Edited</label>
     <!-- note: as of now, this timestamp shows the time the edit form was loaded, not
     the time the submit button was pressed. fix. -->
@@ -31,3 +23,12 @@
   <script>
      autosize(document.getElementById('article-content'));
   </script>
+
+  <!-- <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
+  <label for="funny">funny</label>
+  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
+  <label for="true">true</label>
+  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
+  <label for="sarcastic">sarcastic</label>
+  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
+  <label for="sincere">sincere</label><br/> -->

@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 /* define the schema */
 var articleSchema = new Schema({
   title:  String,
-  author:   String,
+  authorId: String,
+  authorName:   String,
   content: String,
   // need to find a way to ingest this data and interpret it into an array instead
   // look at dating app for code you wrote before

@@ -1,0 +1,8 @@
+Hello there! This is a list of users
+  <% users.forEach(function (user, i) { %>
+    <div class="user">
+      <h3>
+        <a href="/users/<%= user._id %>"> <%= user.name %> </a> <br/>
+      </h3>
+    </div>
+  <% }) %>

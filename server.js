@@ -13,7 +13,13 @@ server.use('/articles', require('./controllers/articles.js'));
 
 /* define default welcome page route */
 server.get('/', function (req, res) {
-  res.render('welcome');
+  if (req.session.userId) {
+    console.log(req.session);
+    res.redirect(302, '/articles');
+  } else {
+    console.log(req.session);
+    res.render('welcome');
+  }
   res.end();
 });
 

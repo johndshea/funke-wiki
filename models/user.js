@@ -2,8 +2,11 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var userSchema = new Schema({
-  email: String,
-  password: String
+  email: { type: String, required: true },
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+  articles: Array,
+  edits: Array
 });
 
 /* Using userSchema.statics allow create a class method called

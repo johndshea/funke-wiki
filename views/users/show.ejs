@@ -1,6 +1,23 @@
-<h1>Welcome, <%= user.email %></h1>
-
+<h1><%= user.name %></h1>
 <hr>
-<form action="/session?_method=DELETE" method="POST">
-  <input type="submit" value="Sign Out">
-</form>
+<%= user.email %>
+
+<%= user.articles %>
+
+<%= user.edits %>
+
+<% user.articles.forEach(function (article, i) { %>
+  <div class="articleSnippet">
+    <h3>
+      <a href="/articles/<%= article._id %>"> <%= article.name %> </a> <br/>
+    </h3>
+  </div>
+<% }) %>
+
+<% user.edits.forEach(function (edit, i) { %>
+  <div class="editSnippet">
+    <h3>
+      <a href="/articles/<%= article._id %>#<%= edit._id %>"> <%= article.name %> </a> <br/>
+    </h3>
+  </div>
+<% }) %>

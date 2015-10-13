@@ -14,17 +14,21 @@
             name='article[content]'
             placeholder="Remember, be nice!"></textarea><br/>
   <label>Tags</label><br/>
-  <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
-  <label for="funny">funny</label>
-  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
-  <label for="true">true</label>
-  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
-  <label for="sarcastic">sarcastic</label>
-  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
-  <label for="sincere">sincere</label><br/>
+  <input type='text'
+         name='article[tags]'
+         placeholder="tags, comma separated"><br/>
   <input type='submit' class="btn-large blue">
 </form>
 <script src='/scripts/autosize.min.js'></script>
   <script>
      autosize(document.getElementById('article-content'));
   </script>
+
+  <!-- <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
+  <label for="funny">funny</label>
+  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
+  <label for="true">true</label>
+  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
+  <label for="sarcastic">sarcastic</label>
+  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
+  <label for="sincere">sincere</label><br/> -->
