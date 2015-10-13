@@ -8,7 +8,11 @@ router.get('/new', function (req, res) {
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('users/login');
+  res.render('users/login', {
+    userId: req.session.userId || "guest",
+    userName: req.session.userName || "Guest"
+  }
+);
 });
 
 // user show page
@@ -19,7 +23,11 @@ router.get('/:id', function (req, res) {
         req.session.flash.message = "An error has occurred: " + err;
         res.redirect(302, '/');
       } else if (user) {
-        res.render('users/show', {user: user});
+        res.render('users/show', {
+          user: user,
+          userId: req.session.userId || "guest",
+          userName: req.session.userName || "Guest"
+        });
       } else {
         res.redirect(302, '/');
       }
@@ -38,7 +46,11 @@ router.get('/:id/edit', function (req, res) {
         req.session.flash.message = "An error has occurred: " + err;
         res.redirect(302, '/');
       } else if (user) {
-        res.render('users/edit', {user: user});
+        res.render('users/edit', {
+          user: user,
+          userId: req.session.userId || "guest",
+          userName: req.session.userName || "Guest"
+        });
       } else {
         res.redirect(302, '/');
       }
@@ -61,7 +73,9 @@ router.get('/', function (req, res) {
       console.log("Retrieval error: ", err);
     } else {
       res.render('users/index', {
-        users: allUsersArray
+        users: allUsersArray,
+        userId: req.session.userId || "guest",
+        userName: req.session.userName || "Guest"
       });
     }
   });

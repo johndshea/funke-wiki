@@ -18,7 +18,10 @@ server.get('/', function (req, res) {
     res.redirect(302, '/articles');
   } else {
     console.log(req.session);
-    res.render('welcome');
+    res.render('welcome',
+    { userId: req.session.userId || "guest",
+      userName: req.session.userName || "Guest"
+    });
   }
   res.end();
 });

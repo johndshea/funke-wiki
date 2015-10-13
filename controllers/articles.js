@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
         res.render('articles/index', {
           articles: allArticlesArray,
           userId: req.session.userId || "guest",
-          userName: req.session.userName || "guest"
+          userName: req.session.userName || "Guest"
         });
       }
     });
@@ -38,7 +38,7 @@ router.get('/new', function (req, res) {
         res.render('articles/new', {
           user: user,
           userId: req.session.userId || "guest",
-          userName: req.session.userName || "guest"
+          userName: req.session.userName || "Guest"
         });
       }
     });
@@ -82,7 +82,7 @@ router.get('/:id', function (req, res) {
         		res.render('articles/show', {
           		article: specificArticle,
               userId: req.session.userId || "guest",
-              userName: req.session.userName || "guest"
+              userName: req.session.userName || "Guest"
         		});
   	      }
     	});
