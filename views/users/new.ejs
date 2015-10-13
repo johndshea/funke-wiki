@@ -2,23 +2,28 @@
   <div class="card-content black-text">
 <h5>Create new user</h5>
 <form action="/users" method="post">
-  <label>Email</label>
-  <input type="email"
+<div class="input-field col s12">
+  <input type="email" id="email"
          name="user[email]"
-         placeholder="ineedsleep@codingtillmyeyesbleed.com"><br/>
-  <label>Name</label>
- <input type="text"
-        name="user[name]"
-        placeholder="yes, your real name"><br/>
-  <label>Password</label>
-  <input type="password"
-         name="user[password]"
-         placeholder="please don't use 'password'. seriously."><br/>
-<label>Confirm Password</label>
-  <input type="password"
-         name="user[passwordVerification]"
-         placeholder="don't you just hate this?"><br/>
-  <input type="submit" value="Sign Up">
+         placeholder="ineedsleep@codingtillmyeyesbleed.com">
+ <label for="email">Email</label>
+</div>
+<div class="input-field col s12">
+  <input type="text" id="name"
+         name="user[name]">
+  <label for="name">Name</label>
+</div>
+<div class="input-field col s12">
+  <input type="password" id="password"
+         name="user[password]">
+  <label for="password">Password</label>
+</div>
+<div class="input-field col s12">
+  <input type="password" id="passwordVerification"
+         name="user[passwordVerification]">
+  <label for="passwordVerification">Confirm password</label>
+</div>
+<input type="submit" value="Sign Up">
 </form>
 
 <hr>

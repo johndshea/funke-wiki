@@ -4,7 +4,9 @@ var mongoose = require('mongoose'),
 var userSchema = new Schema({
   email: { type: String, required: true },
   name: { type: String, required: true },
-  password: { type: String, required: true },
+  passwordDigest: { type: String, required: true },
+  // OLD CODE TO STORE PASSWORDS IN PLAINTEXT
+  // password: { type: String, required: true },
   articles: Array,
   edits: Array
 });

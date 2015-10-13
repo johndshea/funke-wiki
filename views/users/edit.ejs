@@ -1,26 +1,30 @@
 <div class="card ">
   <div class="card-content black-text">
-<h3>Edit your user profile</h3>
-<form action="/users" method="post">
-  <label>Email</label>
-  <input type="email"
-         name="user[email]"
-         value="<%= user.email %>"><br/>
-  <label>Name</label>
- <input type="text"
-        name="user[name]"
-        value="<%= user.name %>"><br/>
-  <label>Password</label>
-  <input type="password"
-         name="user[password]"
-         value="<%= user.password %>"><br/>
-<label>Confirm Password</label>
-  <input type="password"
-         name="user[passwordVerification]"
-         value="<%= user.password %>"><br/>
+<h5>Edit your user profile</h5>
+<form action="/users/<%= user._id %>?_method=PATCH" method="post">
+  <div class="input-field col s12">
+    <input type="email" id="email"
+           name="user[email]"
+           value="<%= user.email %>">
+   <label for="email">Email</label>
+  </div>
+  <div class="input-field col s12">
+    <input type="text" id="name"
+           name="user[name]"
+           value="<%= user.name %>">
+    <label for="name">Name</label>
+  </div>
+  <div class="input-field col s12">
+    <input type="password" id="password"
+           name="user[password]">
+    <label for="password">Change password</label>
+  </div>
+  <div class="input-field col s12">
+    <input type="password" id="passwordVerification"
+           name="user[passwordVerification]">
+    <label for="passwordVerification">Confirm changed password</label>
+  </div>
   <input type="submit" value="Submit Changes">
 </form>
 </div>
 </div>
-<hr>
-[<a href="/session/new">Sign In Instead</a>]

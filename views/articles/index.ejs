@@ -3,6 +3,7 @@
     <div class="article card blue">
       <a href="/articles/<%= article._id %>"><div class="card-content white-text">
         <h5><%= article.title %></h5>
+        <span class="truncate"> <%= article.content %> </span>
         Author: <%= article.authorName || "Anonymous" %><br/>
         Tags: <%= article.tags.join(', ') || "none" %> <br/>
         Last Edited: <%= article.last_edited || "never" %> <br/>
