@@ -3,10 +3,11 @@
   Every route below will be prefaced with '/articles'
 */
 
-var express = require('express'),
-    router  = express.Router(),
-    Article = require('../models/article.js');
-    User = require('../models/user.js');
+var express   = require('express'),
+    router    = express.Router(),
+    marked    = require('marked'),
+    Article   = require('../models/article.js');
+    User      = require('../models/user.js');
 
 // INDEX
 router.get('/', function (req, res) {
@@ -56,6 +57,7 @@ router.post('/', function (req, res) {
     var articleOptions = req.body.article;
     articleOptions.tags = articleOptions.tags.split(/,\s?/);
     articleOptions.authorId = req.session.userId;
+    articleOptions.authorName = req.session.userName;
     var newArticle = new Article(articleOptions);
 
     newArticle.save(newArticle, function (err, addedArticle) {
@@ -81,6 +83,7 @@ router.get('/:id', function (req, res) {
      		} else {
         		res.render('articles/show', {
           		article: specificArticle,
+              content: marked(specificArticle.content),
               userId: req.session.userId || "guest",
               userName: req.session.userName || "Guest"
         		});

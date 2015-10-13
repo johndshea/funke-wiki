@@ -2,24 +2,28 @@
   <div class="card-content black-text">
 <h5>Write a new article</h5>
 <form action="/articles" method="post">
-<label>Article title</label>
-  <input type='text'
-         name='article[title]'
-         placeholder="article title"><br/>
- <!-- need to replace this with code that inserts the currently-logged-in user's ID -->
- <label>Author</label>
-   <input type='text'
-          name='article[author]'
-          placeholder="author name"><br/>
- <label>Article content goes here</label>
-  <textarea id='article-content'
-            name='article[content]'
-            placeholder="Remember, be nice!"></textarea><br/>
-  <label>Tags</label><br/>
-  <input type='text'
-         name='article[tags]'
-         placeholder="tags, comma separated"><br/>
-  <input type='submit' class="btn-large blue">
+  <div class="row">
+        <div class="input-field col s6">
+          <input type='text' id='title' class="validate"
+                 name='article[title]'>
+          <label for="title">Article Title</label>
+        </div>
+        <div class="input-field col s6">
+          <input disabled id="authorName" type="text" name='article[authorName]'
+          class="validate" value="<%= userName %>">
+          <label for="authorName">Author Name</label>
+        </div>
+        <div class="input-field col s12">
+           <textarea id='article-content'
+                     name='article[content]'></textarea><br/>
+           <label for="article-content">Article content</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="tags" type="text" name='article[tags]'>
+          <label for="tags">tags, comma separated</label>
+        </div>
+        <input type='submit' class="btn-large blue">
+      </div>
 </form>
 <script src='/scripts/autosize.min.js'></script>
   <script>
