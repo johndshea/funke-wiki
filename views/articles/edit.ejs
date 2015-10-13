@@ -1,3 +1,6 @@
+<div class="card ">
+  <div class="card-content black-text">
+<h5>Edit article</h5>
 <form action="/articles/<%= article._id %>?_method=PATCH" method="post">
 <label>Article title</label>
   <input type='text'
@@ -23,7 +26,8 @@
   <script>
      autosize(document.getElementById('article-content'));
   </script>
-
+  </div>
+</div>
   <!-- <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
   <label for="funny">funny</label>
   <input type="checkbox" name="article[tags][]" id="true" value="true"/>
