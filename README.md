@@ -20,10 +20,7 @@ BUGS:
 
 * hamburger nav is blocked from loading by Google Chrome when on heroku. https://support.google.com/chrome/answer/1342714?hl=en
 
-* Article last updated timestamp shows the time the edit form was loaded, not
-the time the submit button was pressed.
-
-* editing an article erases all tags (because they're currently implemented as checkboxes). Probably need to put some client-side javascript to check the boxes that show up in the article tags array.
+* Article last updated timestamp shows the time the edit form was loaded, not the time the submit button was pressed.
 
 * fix funky placement of tobias head icon
 

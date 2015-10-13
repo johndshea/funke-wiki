@@ -1,10 +1,14 @@
 var express = require('express'),
     router  = express.Router(),
+    bcrypt  = require('bcrypt'),
     User    = require('../models/user.js');
 
 // define routes
 router.get('/new', function (req, res) {
-  res.render('users/new');
+  res.render('users/new', {
+    userId: req.session.userId || "guest",
+    userName: req.session.userName || "Guest"
+  });
 });
 
 router.get('/login', function (req, res, next) {
@@ -82,6 +86,7 @@ router.get('/', function (req, res) {
 }
 });
 
+// CREATE new user
 router.post('/', function (req, res) {
   var userParams = req.body.user;
 

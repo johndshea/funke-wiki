@@ -1,5 +1,6 @@
 var express = require('express'),
     router  = express.Router(),
+    bcrypt = require('bcrypt'),
     User    = require('../models/user');
 
 router.post('/', function (req, res) {
@@ -26,6 +27,7 @@ router.post('/', function (req, res) {
 
 router.delete('/', function (req, res) {
   delete req.session.userId;
+  delete req.session.userName;
   req.session.flash.message = "Thanks for signing out.";
   res.redirect(302, '/');
 });
