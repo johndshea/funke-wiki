@@ -11,6 +11,7 @@ router.post('/', function (req, res) {
       res.redirect(302, 'users/login');
     } else if (user && user.password == attempt.password) {
       req.session.userId = user._id;
+      req.session.userName = user.name;
       req.session.flash.message = "Thanks for signing in.";
       res.redirect(302, 'articles');
     } else if (user) {

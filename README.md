@@ -1,6 +1,10 @@
 # Project Two - John Shea
 
+Link: https://shrouded-hamlet-6065.herokuapp.com/
+
 TODO: Write stuffs
+
+Wireframes:
 
 ![](http://cl.ly/image/002g3N1n3I2z/wiki_db_wireframe.jpg)
 
@@ -28,4 +32,6 @@ the time the submit button was pressed.
 
 * fix funky placement of tobias head icon
 
-* sessions are not persistent across server restarts by default. Check the express-session page for ways to do it. 
+* sessions are not persistent across server restarts by default. Check the express-session page for ways to do it.
+
+* add proper column/row formatting to each view page as per materialize guidelines (remove from layouts.ejs) - http://materializecss.com/grid.html

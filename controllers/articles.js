@@ -19,7 +19,8 @@ router.get('/', function (req, res) {
       } else {
         res.render('articles/index', {
           articles: allArticlesArray,
-          userId: req.session.userId
+          userId: req.session.userId || "guest",
+          userName: req.session.userName || "guest"
         });
       }
     });
@@ -34,7 +35,11 @@ router.get('/new', function (req, res) {
         req.session.flash.message = "An error has occurred: " + err;
         res.redirect(302, '/');
       } else if (user) {
-        res.render('articles/new', {user: user});
+        res.render('articles/new', {
+          user: user,
+          userId: req.session.userId || "guest",
+          userName: req.session.userName || "guest"
+        });
       }
     });
   } else {
@@ -75,7 +80,9 @@ router.get('/:id', function (req, res) {
         		console.log("Retrieval error: ", err);
      		} else {
         		res.render('articles/show', {
-          		article: specificArticle
+          		article: specificArticle,
+              userId: req.session.userId || "guest",
+              userName: req.session.userName || "guest"
         		});
   	      }
     	});
@@ -92,7 +99,9 @@ router.get('/:id/edit', function (req, res) {
         		console.log("Retrieval error: ", err);
      		} else {
         		res.render('articles/edit', {
-          		article: specificArticle
+          		article: specificArticle,
+              userId: req.session.userId || "guest",
+              userName: req.session.userName || "guest"
         		});
   	      }
     	});
