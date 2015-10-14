@@ -9,7 +9,7 @@
  <label>Article content goes here</label>
  <textarea id='article-content' name='article[content]'><%= article.published.content %></textarea><br/>
   <label>Tags</label><br/>
-  <input type="text" name="article[tags]" value="funny"/>
+  <input type="text" name="article[tags]" value="<%= article.published.tags %>"/>
     <label>Last Edited</label>
     <input disabled type='text'
            value="<%= article.published.last_edited || "never" %>"><br/>

@@ -1,4 +1,4 @@
-<div class="card ">
+<div class="article card hoverable">
   <div class="card-content black-text">
     <h5><%= article.published.title %></h5>
     <hr/>
@@ -12,3 +12,18 @@
     <a href="/articles/<%= article._id %>/edit">Edit this article</a>
   </div>
 </div>
+<% article.drafts.forEach(function (draft, i) { %>
+    <div class="article card hoverable">
+      <a href="/articles/<%= article._id %>"><div class="card-content black-text">
+        <h5><%= draft.title %></h5>
+        <span class="title truncate"> <%= draft.content %> </span>
+        Tags: <%= draft.tags.join(', ') || "none" %> <br/>
+        Editor: <%= draft.editorName || "Anonymous" %><br/>
+        Last Edited: <%= draft.last_edited || "never" %> <br/>
+      </div></a>
+      <div class="card-action">
+        <a href="/articles/<%= article._id %>">View this Draft</a>
+        <a href="/articles/<%= article._id %>/edit">Edit</a>
+      </div>
+    </div>
+  <% }) %>

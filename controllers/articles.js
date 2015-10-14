@@ -121,18 +121,28 @@ router.patch('/:id', function (req, res) {
     var newEdit = req.body.article;
     newEdit.tags = newEdit.tags.split(/,\s?/);
     newEdit.last_edited = new Date();
+    newEdit.editorId = req.session.userId;
+    newEdit.editorName = req.session.userName;
     Article.findById(req.params.id, function (err, foundArticle) {
       if (req.session.userId == foundArticle.authorId) {
-        console.log("author is same");
-      }
-    });
-
-    Article.findByIdAndUpdate(req.params.id, newEdit, function (err, updatedArticle) {
-      if (err) {
-        console.log("update error: ", err);
+        Article.findByIdAndUpdate(req.params.id, {published: newEdit, $push: {history: foundArticle.published}}, function (err, updatedArticle) {
+          if (err) {
+            console.log("update error: ", err);
+          } else {
+            res.redirect(302, "/articles/" + updatedArticle._id);
+            console.log("article successfully updated");
+          }
+        });
       } else {
-        res.redirect(302, "/articles/" + updatedArticle._id);
-        console.log(updatedArticle);
+        // Have to insert draft creation stuff here.
+        Article.findByIdAndUpdate(req.params.id, {$push: {drafts: newEdit}}, function (err, updatedArticle) {
+          if (err) {
+            console.log("update error: ", err);
+          } else {
+            res.redirect(302, "/articles/" + updatedArticle._id);
+            console.log("article successfully updated");
+          }
+        });
       }
     });
   }
