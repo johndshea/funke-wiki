@@ -1,12 +1,12 @@
 <div class="card ">
   <div class="card-content black-text">
-    <h5><%= article.title %></h5>
+    <h5><%= article.published.title %></h5>
     <hr/>
     <div class="flow-text"><%- content %></div>
     <hr/>
     Author: <%= article.authorName %><br/>
-    Tags: <%= article.tags.join(', ') %> <br/>
-    Last Edited: <%= article.last_edited %> <br/>
+    Tags: <%= article.published.tags.join(', ') %> <br/>
+    Last Edited: <%= article.published.last_edited || "never" %> <br/>
   </div>
   <div class="card-action">
     <a href="/articles/<%= article._id %>/edit">Edit this article</a>

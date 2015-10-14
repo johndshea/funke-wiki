@@ -27,9 +27,9 @@ Wireframes:
 
 BUGS:
 
-* hamburger nav is blocked from loading by Google Chrome when on heroku. https://support.google.com/chrome/answer/1342714?hl=en
+* markdown not displaying properly on the article index page
 
-* Article last updated timestamp shows the time the edit form was loaded, not the time the submit button was pressed.
+* hamburger nav is blocked from loading by Google Chrome when on heroku. https://support.google.com/chrome/answer/1342714?hl=en
 
 * fix funky placement of tobias head icon
 
@@ -40,6 +40,9 @@ BUGS:
 * make article list formatting nicer - see http://materializecss.com/collections.html#circle
 
 * in general, make formatting nicer throughout the site.
+
+users:
+Finn B, fb@test.com, “finn"
 
 Article Lorem Ipsum:
 

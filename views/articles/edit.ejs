@@ -5,19 +5,17 @@
 <label>Article title</label>
   <input type='text'
          name='article[title]'
-         value="<%= article.title %>"><br/>
+         value="<%= article.published.title %>"><br/>
  <label>Article content goes here</label>
- <textarea id='article-content' name='article[content]'><%= article.content %></textarea><br/>
-  <!-- probably need to put some client-side javascript here to check the boxes that
-  show up in the article tags array. -->
+ <textarea id='article-content' name='article[content]'><%= article.published.content %></textarea><br/>
   <label>Tags</label><br/>
   <input type="text" name="article[tags]" value="funny"/>
-  <label>Last Edited</label>
-    <!-- note: as of now, this timestamp shows the time the edit form was loaded, not
-    the time the submit button was pressed. fix. -->
-    <input type='text'
-           name='article[last_edited]'
-           value="<%= new Date(); %>"><br/>
+    <label>Last Edited</label>
+    <input disabled type='text'
+           value="<%= article.published.last_edited || "never" %>"><br/>
+    <label>Author</label>
+   <input disabled type='text'
+          value="<%= article.authorName %>"><br/>
   <input type='submit' class="btn-large blue">
 </form>
 <form action="/articles/<%= article._id %>?_method=DELETE" method="post"><br/>

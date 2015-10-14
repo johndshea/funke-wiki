@@ -4,18 +4,42 @@ var mongoose = require('mongoose'),
 
 /* define the schema */
 var articleSchema = new Schema({
-  title:  String,
-  authorId: String,
-  authorName:   String,
-  content: String,
-  tags: Array,
-  drafts: Array,
-  history: Array,
-  // right now, this sets the date once when the article is created and never
-  // updates it. I need to figure out a way to have it reset with each edit.
-  // Try looking at the http://www.w3schools.com/js/js_dates.asp page.
+  authorId: { type : String, required: true },
+  authorName: { type : String, required: true },
   date_created: { type : Date, default: Date.now },
-  last_edited: Date
+  published: {
+    title: { type : String, default: "Untitled" },
+    content: { type : String, default: "" },
+    editorId: String,
+    editorName: String,
+    last_edited: { type : Date },
+    tags: { type : Array, default: [] },
+    upvotes: { type : Number, default: 0 },
+    downvotes: { type : Number, default: 0 }
+    // add schema for comments?
+    },
+  drafts: [{
+    title: { type : String, default: "Untitled" },
+    content: { type : String, default: "" },
+    editorId: String,
+    editorName: String,
+    last_edited: { type : Date },
+    tags: { type : Array, default: [] },
+    upvotes: { type : Number, default: 0 },
+    downvotes: { type : Number, default: 0 }
+    // add schema for comments?
+  }],
+  history: [{
+    title: String,
+    content: String,
+    editorId: String,
+    editorName: String,
+    last_edited: Date,
+    tags: Array,
+    upvotes: String,
+    downvotes: String
+    // add schema for comments?
+  }],
 });
 
 /* make the model */

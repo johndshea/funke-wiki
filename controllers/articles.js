@@ -55,7 +55,7 @@ router.post('/', function (req, res) {
     res.redirect(302, '/users/login');
   } else {
     var articleOptions = req.body.article;
-    articleOptions.tags = articleOptions.tags.split(/,\s?/);
+    articleOptions.published.tags = articleOptions.published.tags.split(/,\s?/);
     articleOptions.authorId = req.session.userId;
     articleOptions.authorName = req.session.userName;
     var newArticle = new Article(articleOptions);
@@ -83,7 +83,7 @@ router.get('/:id', function (req, res) {
      		} else {
         		res.render('articles/show', {
           		article: specificArticle,
-              content: marked(specificArticle.content),
+              content: marked(specificArticle.published.content),
               userId: req.session.userId || "guest",
               userName: req.session.userName || "Guest"
         		});
@@ -118,23 +118,21 @@ router.patch('/:id', function (req, res) {
   if (!req.session.userId) {
     res.redirect(302, '/users/login');
   } else {
-    var articleOptions = req.body.article;
-    articleOptions.tags = articleOptions.tags.split(/,\s?/);
-    articleOptions.history = [];
-    // try this for better "last edited" function that isn't user editable?
-    // articleOptions.last_edited = new Date();
-    // OR
-    // articleOptions.last_edited = Date.now();
+    var newEdit = req.body.article;
+    newEdit.tags = newEdit.tags.split(/,\s?/);
+    newEdit.last_edited = new Date();
     Article.findById(req.params.id, function (err, foundArticle) {
-      console.log(articleOptions);
-      articleOptions.history.push(foundArticle);
-      console.log(articleOptions);
+      if (req.session.userId == foundArticle.authorId) {
+        console.log("author is same");
+      }
     });
-    Article.findByIdAndUpdate(req.params.id, articleOptions, function (err, updatedArticle) {
+
+    Article.findByIdAndUpdate(req.params.id, newEdit, function (err, updatedArticle) {
       if (err) {
         console.log("update error: ", err);
       } else {
         res.redirect(302, "/articles/" + updatedArticle._id);
+        console.log(updatedArticle);
       }
     });
   }

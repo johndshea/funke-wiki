@@ -5,7 +5,7 @@
   <div class="row">
         <div class="input-field col s6">
           <input type='text' id='title' class="validate"
-                 name='article[title]'>
+                 name='article[published][title]'>
           <label for="title">Article Title</label>
         </div>
         <div class="input-field col s6">
@@ -15,11 +15,11 @@
         </div>
         <div class="input-field col s12">
            <textarea id='article-content'
-                     name='article[content]'></textarea><br/>
+                     name='article[published][content]'></textarea><br/>
            <label for="article-content">Article content</label>
         </div>
         <div class="input-field col s12">
-          <input id="tags" type="text" name='article[tags]'>
+          <input id="tags" type="text" name='article[published][tags]'>
           <label for="tags">tags, comma separated</label>
         </div>
         <input type='submit' class="btn-large blue">
