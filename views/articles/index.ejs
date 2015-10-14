@@ -1,7 +1,7 @@
 <h5>All articles</h5>
 <% articles.forEach(function (article, i) { %>
-    <div class="article card blue">
-      <a href="/articles/<%= article._id %>"><div class="card-content white-text">
+    <div class="article card hoverable">
+      <a href="/articles/<%= article._id %>"><div class="card-content black-text">
         <h5><%= article.title %></h5>
         <span class="truncate"> <%= article.content %> </span>
         Author: <%= article.authorName || "Anonymous" %><br/>

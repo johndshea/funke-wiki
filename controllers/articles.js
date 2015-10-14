@@ -119,6 +119,12 @@ router.patch('/:id', function (req, res) {
     res.redirect(302, '/users/login');
   } else {
     var articleOptions = req.body.article;
+    articleOptions.tags = articleOptions.tags.split(/,\s?/);
+    Article.findById(req.params.id, function (err, foundArticle) {
+      articleOptions.old_versions = foundArticle.old_versions;
+      articleOptions.old_versions.push(foundArticle.content);
+      console.log(articleOptions);
+    });
     Article.findByIdAndUpdate(req.params.id, articleOptions, function (err, updatedArticle) {
       if (err) {
         console.log("update error: ", err);

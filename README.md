@@ -2,7 +2,13 @@
 
 Link: https://shrouded-hamlet-6065.herokuapp.com/
 
-TODO: Write stuffs
+TODO:
+
+* find a way to build revision history
+Concept 1: store full old versions in the article object. Have the object contain an array, and push old content to that array when changing the present content.
+- built, but isn't adding the "old versions" to the array. Hmmmmm.
+
+* Write readme
 
 Wireframes:
 
@@ -29,3 +35,5 @@ BUGS:
 * add proper column/row formatting to each view page as per materialize guidelines (remove from layouts.ejs) - http://materializecss.com/grid.html
 
 * make article list formatting nicer - see http://materializecss.com/collections.html#circle
+
+* in general, make formatting nicer throughout the site.
