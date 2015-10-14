@@ -28,8 +28,8 @@ router.get('/', function (req, res) {
         res.render('articles/index', {
           articles: allArticlesArray,
         //REMOVE ALL OF THESE SINCE YOU NOW ARE USING THE LOCALS ROUTE
-          userId: req.session.userId || "guest",
-          userName: req.session.userName || "Guest"
+          // userId: req.session.userId || "guest",
+          // userName: req.session.userName || "Guest"
         });
       }
     });
@@ -46,8 +46,8 @@ router.get('/new', function (req, res) {
       } else if (user) {
         res.render('articles/new', {
           user: user,
-          userId: req.session.userId || "guest",
-          userName: req.session.userName || "Guest"
+          // userId: req.session.userId || "guest",
+          // userName: req.session.userName || "Guest"
         });
       }
     });
@@ -92,8 +92,8 @@ router.get('/:id', function (req, res) {
         		res.render('articles/show', {
           		article: specificArticle,
               content: marked(specificArticle.published.content),
-              userId: req.session.userId || "guest",
-              userName: req.session.userName || "Guest"
+              // userId: req.session.userId || "guest",
+              // userName: req.session.userName || "Guest"
         		});
   	      }
     	});
@@ -111,8 +111,8 @@ router.get('/:id/edit', function (req, res) {
      		} else {
         		res.render('articles/edit', {
           		article: specificArticle,
-              userId: req.session.userId || "guest",
-              userName: req.session.userName || "guest"
+              // userId: req.session.userId || "guest",
+              // userName: req.session.userName || "guest"
         		});
   	      }
     	});

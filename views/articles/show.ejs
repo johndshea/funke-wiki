@@ -14,37 +14,36 @@
 </div>
 
 <!-- Change the foreach loop to be a decrementing for loop - should fix the backward edit/draft ordering problem -->
-
 <ul class="collapsible hoverable" data-collapsible="accordion">
-  <% article.drafts.forEach(function (draft, i) { %>
+  <% for (i = article.drafts.length - 1; i >= 0; i--) { %>
       <li>
-        <div class="collapsible-header"><i class="material-icons">spellcheck</i>Draft # <%= i %> </div>
+        <div class="collapsible-header"><i class="material-icons">spellcheck</i>Draft # <%= i + 1 %> </div>
         <div class="collapsible-body">
           <p>
-            <%= draft.title %>
-            <span class="title truncate"> <%= draft.content %> </span>
-            Tags: <%= draft.tags.join(', ') || "none" %> <br/>
-            Editor: <%= draft.editorName || "Anonymous" %><br/>
-            Last Edited: <%= draft.last_edited || "never" %> <br/>
+            <%= article.drafts[i].title %>
+            <span class="title truncate"> <%= article.drafts[i].content %> </span>
+            Tags: <%= article.drafts[i].tags.join(', ') || "none" %> <br/>
+            Editor: <%= article.drafts[i].editorName || "Anonymous" %><br/>
+            Last Edited: <%= article.drafts[i].last_edited || "never" %> <br/>
           </p>
         </div>
       </li>
-  <% }) %>
+  <% } %>
 </ul>
 
 <ul class="collapsible hoverable" data-collapsible="accordion">
-  <% article.history.forEach(function (oldVersion, i) { %>
+  <% for (i = article.history.length - 1; i >= 0; i--) { %>
       <li>
-        <div class="collapsible-header"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i %> </div>
+        <div class="collapsible-header"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i + 1 %> </div>
         <div class="collapsible-body">
           <p>
-            <%= oldVersion.title %>
-            <span class="title truncate"> <%= oldVersion.content %> </span>
-            Tags: <%= oldVersion.tags.join(', ') || "none" %> <br/>
-            Editor: <%= oldVersion.editorName || "Anonymous" %><br/>
-            Last Edited: <%= oldVersion.last_edited || "never" %> <br/>
+            <%= article.history[i].title %>
+            <span class="title truncate"> <%= article.history[i].content %> </span>
+            Tags: <%= article.history[i].tags.join(', ') || "none" %> <br/>
+            Editor: <%= article.history[i].editorName || "Anonymous" %><br/>
+            Last Edited: <%= article.history[i].last_edited || "never" %> <br/>
           </p>
         </div>
       </li>
-  <% }) %>
+  <% } %>
 </ul>

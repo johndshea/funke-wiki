@@ -1,20 +1,28 @@
 var express = require('express'),
     router  = express.Router(),
     bcrypt  = require('bcrypt'),
+    marked  = require('marked'),
     User    = require('../models/user.js');
+
+  router.use(function(req, res, next) {
+    res.locals.marked = marked;
+    res.locals.userId = req.session.userId || "guest";
+    res.locals.userName = req.session.userName || "Guest";
+    next();
+  });
 
 // define routes
 router.get('/new', function (req, res) {
   res.render('users/new', {
-    userId: req.session.userId || "guest",
-    userName: req.session.userName || "Guest"
+    // userId: req.session.userId || "guest",
+    // userName: req.session.userName || "Guest"
   });
 });
 
 router.get('/login', function (req, res, next) {
   res.render('users/login', {
-    userId: req.session.userId || "guest",
-    userName: req.session.userName || "Guest"
+    // userId: req.session.userId || "guest",
+    // userName: req.session.userName || "Guest"
   }
 );
 });
@@ -29,8 +37,8 @@ router.get('/:id', function (req, res) {
       } else if (user) {
         res.render('users/show', {
           user: user,
-          userId: req.session.userId || "guest",
-          userName: req.session.userName || "Guest"
+          // userId: req.session.userId || "guest",
+          // userName: req.session.userName || "Guest"
         });
       } else {
         res.redirect(302, '/');
@@ -52,8 +60,8 @@ router.get('/:id/edit', function (req, res) {
       } else if (user) {
         res.render('users/edit', {
           user: user,
-          userId: req.session.userId || "guest",
-          userName: req.session.userName || "Guest"
+          // userId: req.session.userId || "guest",
+          // userName: req.session.userName || "Guest"
         });
       } else {
         res.redirect(302, '/');
@@ -78,8 +86,8 @@ router.get('/', function (req, res) {
     } else {
       res.render('users/index', {
         users: allUsersArray,
-        userId: req.session.userId || "guest",
-        userName: req.session.userName || "Guest"
+        // userId: req.session.userId || "guest",
+        // userName: req.session.userName || "Guest"
       });
     }
   });
@@ -133,19 +141,6 @@ router.post('/', function (req, res) {
         });
       }
     });
-    // CODE BELOW CREATES USERS WITHOUT HASHING PASSWORDS
-    // User.findOrCreateByEmail(userParams, function (err, user) {
-    //   if (err) {
-    //     console.log(err);
-    //     req.session.flash.message = "Some error has occurred.";
-    //     res.redirect(302, '/users/new');
-    //   } else {
-    //     req.session.flash.message = "Sign up successful!";
-    //     req.session.userId = user._id;
-    //     // could also use user name
-    //     res.redirect(302, '/users/' + user._id);
-    //   }
-    // });
   } else {
     req.session.flash.message = "Password and verification must match.";
     res.redirect(302, '/users/new');
@@ -180,3 +175,17 @@ router.patch('/:id', function (req, res) {
 
 // export router
 module.exports = router;
+
+// CODE BELOW CREATES USERS WITHOUT HASHING PASSWORDS
+// User.findOrCreateByEmail(userParams, function (err, user) {
+//   if (err) {
+//     console.log(err);
+//     req.session.flash.message = "Some error has occurred.";
+//     res.redirect(302, '/users/new');
+//   } else {
+//     req.session.flash.message = "Sign up successful!";
+//     req.session.userId = user._id;
+//     // could also use user name
+//     res.redirect(302, '/users/' + user._id);
+//   }
+// });

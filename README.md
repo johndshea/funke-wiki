@@ -4,14 +4,24 @@ Link: https://shrouded-hamlet-6065.herokuapp.com/
 
 TODO:
 
-* find a way to build revision history
-Concept 1: store full old versions in the article object. Have the object contain an array, and push old content to that array when changing the present content.
-- built, but isn't adding the "old versions" to the array. Hmmmmm.
-Concept 2: http://software.danielwatrous.com/representing-revision-data-in-mongodb/
-
 * use populate or something similar to display articles written by a user on that user's profile page
 
 * Write readme
+
+SHORTY NOTES:
+
+Every time a vote comes in,
+a) add the appropriate vote
+b) add upvotes to downvotes
+c) if total votes is greater than a certain threshold, check ratio. if both check out,
+d) set currentversion = the winning draft (use splice so as to remove the draft from the drafts array)
+e) move currentversion to the archive
+
+* allow authors to lock articles from others' editing?
+
+* set navbar buttons to be "active" class if that page is being visited, remove ugly page title text
+
+* set up buttons that appear or disappear based on who is logged in
 
 Wireframes:
 
@@ -27,25 +37,7 @@ Wireframes:
 
 BUGS:
 
-
-SHORTY NOTES:
-
-Every time a vote comes in,
-a) add the appropriate vote
-b) add upvotes to downvotes
-c) if total votes is greater than a certain threshold, check ratio. if both check out,
-d) set currentversion = the winning draft (use splice so as to remove the draft from the drafts array)
-e) move currentversion to the archive
-
-* allow authors to lock articles from others' editing?
-
-
-
-
-
-
-
-* markdown not displaying properly on the article index page
+* on the article index page, using marked() overrides the truncate class. Shorty suggests using a mini body preview?
 
 * hamburger nav is blocked from loading by Google Chrome when on heroku. https://support.google.com/chrome/answer/1342714?hl=en
 
