@@ -120,9 +120,14 @@ router.patch('/:id', function (req, res) {
   } else {
     var articleOptions = req.body.article;
     articleOptions.tags = articleOptions.tags.split(/,\s?/);
+    articleOptions.history = [];
+    // try this for better "last edited" function that isn't user editable?
+    // articleOptions.last_edited = new Date();
+    // OR
+    // articleOptions.last_edited = Date.now();
     Article.findById(req.params.id, function (err, foundArticle) {
-      articleOptions.old_versions = foundArticle.old_versions;
-      articleOptions.old_versions.push(foundArticle.content);
+      console.log(articleOptions);
+      articleOptions.history.push(foundArticle);
       console.log(articleOptions);
     });
     Article.findByIdAndUpdate(req.params.id, articleOptions, function (err, updatedArticle) {
