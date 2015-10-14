@@ -12,18 +12,39 @@
     <a href="/articles/<%= article._id %>/edit">Edit this article</a>
   </div>
 </div>
-<% article.drafts.forEach(function (draft, i) { %>
-    <div class="article card hoverable">
-      <a href="/articles/<%= article._id %>"><div class="card-content black-text">
-        <h5><%= draft.title %></h5>
-        <span class="title truncate"> <%= draft.content %> </span>
-        Tags: <%= draft.tags.join(', ') || "none" %> <br/>
-        Editor: <%= draft.editorName || "Anonymous" %><br/>
-        Last Edited: <%= draft.last_edited || "never" %> <br/>
-      </div></a>
-      <div class="card-action">
-        <a href="/articles/<%= article._id %>">View this Draft</a>
-        <a href="/articles/<%= article._id %>/edit">Edit</a>
-      </div>
-    </div>
+
+<!-- Change the foreach loop to be a decrementing for loop - should fix the backward edit/draft ordering problem -->
+
+<ul class="collapsible hoverable" data-collapsible="accordion">
+  <% article.drafts.forEach(function (draft, i) { %>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">spellcheck</i>Draft # <%= i %> </div>
+        <div class="collapsible-body">
+          <p>
+            <%= draft.title %>
+            <span class="title truncate"> <%= draft.content %> </span>
+            Tags: <%= draft.tags.join(', ') || "none" %> <br/>
+            Editor: <%= draft.editorName || "Anonymous" %><br/>
+            Last Edited: <%= draft.last_edited || "never" %> <br/>
+          </p>
+        </div>
+      </li>
   <% }) %>
+</ul>
+
+<ul class="collapsible hoverable" data-collapsible="accordion">
+  <% article.history.forEach(function (oldVersion, i) { %>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i %> </div>
+        <div class="collapsible-body">
+          <p>
+            <%= oldVersion.title %>
+            <span class="title truncate"> <%= oldVersion.content %> </span>
+            Tags: <%= oldVersion.tags.join(', ') || "none" %> <br/>
+            Editor: <%= oldVersion.editorName || "Anonymous" %><br/>
+            Last Edited: <%= oldVersion.last_edited || "never" %> <br/>
+          </p>
+        </div>
+      </li>
+  <% }) %>
+</ul>

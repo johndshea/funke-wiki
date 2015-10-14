@@ -15,9 +15,14 @@ var articleSchema = new Schema({
     last_edited: { type : Date },
     tags: { type : Array, default: [] },
     upvotes: { type : Number, default: 0 },
-    downvotes: { type : Number, default: 0 }
-    // add schema for comments?
-    },
+    downvotes: { type : Number, default: 0 },
+    comments: [{
+      authorId: { type : String},
+      authorName: { type : String},
+      content: { type : String, default: "" },
+      timestamp: { type : Date, default: Date.now },
+    }]
+  },
   drafts: [{
     title: { type : String, default: "Untitled" },
     content: { type : String, default: "" },
@@ -26,8 +31,13 @@ var articleSchema = new Schema({
     last_edited: { type : Date },
     tags: { type : Array, default: [] },
     upvotes: { type : Number, default: 0 },
-    downvotes: { type : Number, default: 0 }
-    // add schema for comments?
+    downvotes: { type : Number, default: 0 },
+    comments: [{
+      authorId: { type : String},
+      authorName: { type : String},
+      content: { type : String, default: "" },
+      timestamp: { type : Date, default: Date.now },
+    }]
   }],
   history: [{
     title: String,
@@ -37,8 +47,13 @@ var articleSchema = new Schema({
     last_edited: Date,
     tags: Array,
     upvotes: String,
-    downvotes: String
-    // add schema for comments?
+    downvotes: String,
+    comments: [{
+      authorId: { type : String},
+      authorName: { type : String},
+      content: { type : String, default: "" },
+      timestamp: { type : Date, default: Date.now },
+    }]
   }],
 });
 

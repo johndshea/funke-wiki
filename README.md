@@ -27,6 +27,24 @@ Wireframes:
 
 BUGS:
 
+
+SHORTY NOTES:
+
+Every time a vote comes in,
+a) add the appropriate vote
+b) add upvotes to downvotes
+c) if total votes is greater than a certain threshold, check ratio. if both check out,
+d) set currentversion = the winning draft (use splice so as to remove the draft from the drafts array)
+e) move currentversion to the archive
+
+* allow authors to lock articles from others' editing?
+
+
+
+
+
+
+
 * markdown not displaying properly on the article index page
 
 * hamburger nav is blocked from loading by Google Chrome when on heroku. https://support.google.com/chrome/answer/1342714?hl=en
