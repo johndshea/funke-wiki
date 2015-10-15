@@ -1,6 +1,5 @@
 <div class="card ">
   <div class="card-content black-text">
-<h5>Edit article</h5>
 <form action="/articles/<%= article._id %>?_method=PATCH" method="post">
 <label>Article title</label>
   <input type='text'
@@ -16,21 +15,15 @@
     <label>Author</label>
    <input disabled type='text'
           value="<%= article.authorName %>"><br/>
-  <input type='submit' class="btn-large blue">
+  <button class="btn blue waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 </form>
 <form action="/articles/<%= article._id %>?_method=DELETE" method="post"><br/>
-  <input type="submit" class="btn-large red" value="Delete this article"></form>
+  <input type="submit" class="btn red" value="Delete this article"></form>
 <script src='/scripts/autosize.min.js'></script>
   <script>
      autosize(document.getElementById('article-content'));
   </script>
   </div>
 </div>
-  <!-- <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
-  <label for="funny">funny</label>
-  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
-  <label for="true">true</label>
-  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
-  <label for="sarcastic">sarcastic</label>
-  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
-  <label for="sincere">sincere</label><br/> -->

@@ -1,6 +1,5 @@
 <div class="card ">
   <div class="card-content black-text">
-<h5>Write a new article</h5>
 <form action="/articles" method="post">
   <div class="row">
         <div class="input-field col s6">
@@ -22,7 +21,9 @@
           <input id="tags" type="text" name='article[published][tags]'>
           <label for="tags">tags, comma separated</label>
         </div>
-        <input type='submit' class="btn-large blue">
+        <button class="btn blue waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
       </div>
 </form>
 <script src='/scripts/autosize.min.js'></script>

@@ -1,6 +1,6 @@
 # Project Two - John Shea
 
-Link: https://shrouded-hamlet-6065.herokuapp.com/
+Link: https://funke-wiki.herokuapp.com/
 
 TODO:
 
@@ -10,6 +10,7 @@ TODO:
 
 SHORTY NOTES:
 
+* To build draft voting:
 Every time a vote comes in,
 a) add the appropriate vote
 b) add upvotes to downvotes
@@ -17,11 +18,16 @@ c) if total votes is greater than a certain threshold, check ratio. if both chec
 d) set currentversion = the winning draft (use splice so as to remove the draft from the drafts array)
 e) move currentversion to the archive
 
+* then build commenting? store comments in the comment schema you already wrote in each published/draft/archived object.
+
 * allow authors to lock articles from others' editing?
 
-* set navbar buttons to be "active" class if that page is being visited, remove ugly page title text
-
 * set up buttons that appear or disappear based on who is logged in
+
+* use tooltips for flash messages http://materializecss.com/dialogs.html
+
+* use tabs for drafts and archived versions, rather than listing them below main body? http://materializecss.com/tabs.html
+
 
 Wireframes:
 
@@ -48,6 +54,8 @@ BUGS:
 * add proper column/row formatting to each view page as per materialize guidelines (remove from layouts.ejs) - http://materializecss.com/grid.html
 
 * make article list formatting nicer - see http://materializecss.com/collections.html#circle
+
+* add tobias peek image to welcome page
 
 * in general, make formatting nicer throughout the site.
 

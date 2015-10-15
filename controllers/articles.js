@@ -9,13 +9,6 @@ var express   = require('express'),
     Article   = require('../models/article.js');
     User      = require('../models/user.js');
 
-router.use(function(req, res, next) {
-  res.locals.marked = marked;
-  res.locals.userId = req.session.userId || "guest";
-  res.locals.userName = req.session.userName || "Guest";
-  next();
-});
-
 // INDEX
 router.get('/', function (req, res) {
   if (!req.session.userId) {

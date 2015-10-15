@@ -14,7 +14,7 @@ router.post('/', function (req, res) {
           req.session.userId = user._id;
           req.session.userName = user.name;
           req.session.flash.message = "Thanks for signing in.";
-          res.redirect(302, 'articles');
+          res.redirect(302, "/");
         } else {
           req.session.flash.message = "Username and password combination not found";
           console.log(compareErr);

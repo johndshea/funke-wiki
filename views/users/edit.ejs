@@ -1,6 +1,5 @@
 <div class="card ">
   <div class="card-content black-text">
-<h5>Edit your user profile</h5>
 <form action="/users/<%= user._id %>?_method=PATCH" method="post">
   <div class="input-field col s12">
     <input type="email" id="email"
@@ -24,7 +23,9 @@
            name="user[passwordVerification]">
     <label for="passwordVerification">Confirm changed password</label>
   </div>
-  <input type="submit" value="Submit Changes">
+  <button class="btn blue waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 </form>
 </div>
 </div>

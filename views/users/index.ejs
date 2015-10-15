@@ -1,5 +1,4 @@
-<h5>View all users</h5>
-  <% users.forEach(function (user, i) { %>
+<% users.forEach(function (user, i) { %>
       <div class="card user">
         <div class="card-content black-text">
       <h5><a href="/users/<%= user._id %>"> <%= user.name %> </a></h5>

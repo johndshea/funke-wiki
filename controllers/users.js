@@ -4,13 +4,6 @@ var express = require('express'),
     marked  = require('marked'),
     User    = require('../models/user.js');
 
-  router.use(function(req, res, next) {
-    res.locals.marked = marked;
-    res.locals.userId = req.session.userId || "guest";
-    res.locals.userName = req.session.userName || "Guest";
-    next();
-  });
-
 // define routes
 router.get('/new', function (req, res) {
   res.render('users/new', {

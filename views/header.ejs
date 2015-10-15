@@ -3,23 +3,31 @@
   <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">
     <img src="/images/logo.png" height="56" alt="tobias"></a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="/articles">Articles</a></li>
-      <li><a href="/users">Users</a></li>
-      <li><a href="/articles/new">New Article</a></li>
-      <li><a href="/users/<%= userId %>/edit">Welcome,&nbsp <%= userName %> </a></li>
-      <li><form action="/session?_method=DELETE" method="POST">
-        <input type="submit" class="logoutbutton1" value="  Sign Out  ">
-      </form></li>
+      <% if (userId != "guest") { %>
+        <li <% if(requested == "/articles"){ %> class="active" <% } %> ><a href="/articles">Articles</a></li>
+        <li <% if(requested == "/users"){ %> class="active" <% } %> ><a href="/users">Users</a></li>
+        <li <% if(requested == "/articles/new"){ %> class="active" <% } %> ><a href="/articles/new">New Article</a></li>
+        <li <% if(requested == "/users/" + userId + "/edit"){ %> class="active" <% } %> ><a href="/users/<%= userId %>/edit">Welcome,&nbsp <%= userName %> </a></li>
+        <li><form action="/session?_method=DELETE" method="POST">
+          <input type="submit" class="logoutbutton1" value="  Sign Out  ">
+        </form></li>
+      <% } else { %>
+        <li <% if(requested == "/users/login"){ %> class="active" <% } %> ><a href="/users/login">  Log In  </a></li>
+      <% } %>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
-      <li><a href="/articles">Articles</a></li>
-      <li><a href="/users">Users</a></li>
-      <li><a href="/articles/new">New Article</a></li>
-      <li><a href="/users/<%= userId %>/edit">Edit Your Profile</a></li>
-      <li><form action="/session?_method=DELETE" method="POST">
-        <input type="submit" class="logoutbutton2" value="Sign Out">
-      </form></li>
+      <% if (userId != "guest") { %>
+        <li <% if(requested == "/articles"){ %> class="active" <% } %> ><a href="/articles">Articles</a></li>
+        <li <% if(requested == "/users"){ %> class="active" <% } %> ><a href="/users">Users</a></li>
+        <li <% if(requested == "/articles/new"){ %> class="active" <% } %> ><a href="/articles/new">New Article</a></li>
+        <li <% if(requested == "/users/" + userId + "/edit"){ %> class="active" <% } %> ><a href="/users/<%= userId %>/edit">Edit Your Profile</a></li>
+        <li><form action="/session?_method=DELETE" method="POST">
+          <input type="submit" class="logoutbutton2" value="Sign Out">
+        </form></li>
+      <% } else { %>
+        <li <% if(requested == "/users/login"){ %> class="active" <% } %> ><a href="/users/login">  Log In  </a></li>
+      <% } %>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>

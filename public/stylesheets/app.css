@@ -46,6 +46,17 @@ main {
   color:black;
 }
 
+input {
+	background:none;
+  border:none;
+  color:white;
+	text-decoration: none;
+}
+
+.peek {
+	height:300px;
+}
+
 @media print {
    body {
       color: #000;
