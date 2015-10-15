@@ -10,7 +10,6 @@ http://materializecss.com/templates/starter-template/preview.html -->
   <!--Google Icon Fonts - look through and make sure you don't need the font folder you currently have -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css" media="screen,projection">
-
   <link rel="stylesheet" href="/stylesheets/app.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -19,9 +18,12 @@ http://materializecss.com/templates/starter-template/preview.html -->
   <%- include header %>
 
     <!-- Displays a flash message from the prior page, if it exists. Credit to Shorty (Matt Short) for this idea -->
-    <% if (flash.message) { %>
+  <% if (flash.message) { %>
+    <div id="flash" class="hide">
       <%= flash.message %>
-    <% } %>
+    </div>
+  <% } %>
+
 
         <%- body %>
 

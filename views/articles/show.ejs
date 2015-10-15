@@ -26,6 +26,9 @@
         <div class="card-action">
           <a href="/articles/<%= article._id %>/edit">Edit this article</a>
         </div>
+        <div class="card-action">
+          Comments section goes here
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +40,7 @@
       <ul class="collapsible hoverable popout" data-collapsible="accordion">
         <% for (i = article.drafts.length - 1; i >= 0; i--) { %>
             <li>
-              <div class="collapsible-header"><i class="material-icons">spellcheck</i>Draft # <%= i + 1 %><span class="right">
+              <div class="collapsible-header active"><i class="material-icons">spellcheck</i>Draft # <%= i + 1 %><span class="right">
                 <i class="material-icons">thumbs_up_down</i><%= article.drafts[i].upvotes%> up,
                 <%= article.drafts[i].downvotes%> down,
                 <%= article.drafts[i].comments.length%> comments</span>
@@ -49,6 +52,13 @@
                   Tags: <%= article.drafts[i].tags.join(', ') || "none" %> <br/>
                   Editor: <%= article.drafts[i].editorName || "Anonymous" %><br/>
                   Last Edited: <%= article.drafts[i].last_edited || "never" %> <br/>
+                </p>
+                <p>
+                  <a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_up</i>upvote</a>
+                  <a class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>downvote</a>
+                  <a class="waves-effect waves-light btn blue"><i class="material-icons left">comment</i>comment</a>
+                  
+                  <a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>delete</a>
                 </p>
               </div>
             </li>
@@ -64,7 +74,7 @@
       <ul class="collapsible hoverable popout" data-collapsible="accordion">
         <% for (i = article.history.length - 1; i >= 0; i--) { %>
             <li>
-              <div class="collapsible-header"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i + 1 %> </div>
+              <div class="collapsible-header active"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i + 1 %> </div>
               <div class="collapsible-body">
                 <p>
                   <%= article.history[i].title %>

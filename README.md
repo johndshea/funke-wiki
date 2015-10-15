@@ -26,21 +26,13 @@ e) move currentversion to the archive
 
 * set up article delete buttons that appear or disappear based on who is logged in
 
-* use tooltips for flash messages http://materializecss.com/dialogs.html
-
 * sessions are not persistent across server restarts by default. Check the express-session page for ways to do it.
-
-* use tabs for drafts and archived versions, rather than listing them below main body? http://materializecss.com/tabs.html
-
-* redefine your routes so that you only check for userId once and not on every single route every time
 
 BUGS:
 
 * on the article index page, using marked() overrides the truncate class. Shorty suggests using a mini body preview?
 
 * fix funky placement of tobias head icon
-
-* add proper column/row formatting to each view page as per materialize guidelines (remove from layouts.ejs) - http://materializecss.com/grid.html
 
 * in general, make formatting nicer throughout the site. Use http://materializecss.com/collections.html#circle for user list
 

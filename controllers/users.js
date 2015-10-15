@@ -6,18 +6,11 @@ var express = require('express'),
 
 // define routes
 router.get('/new', function (req, res) {
-  res.render('users/new', {
-    // userId: req.session.userId || "guest",
-    // userName: req.session.userName || "Guest"
-  });
+  res.render('users/new');
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('users/login', {
-    // userId: req.session.userId || "guest",
-    // userName: req.session.userName || "Guest"
-  }
-);
+  res.render('users/login');
 });
 
 // user show page
@@ -75,11 +68,7 @@ router.get('/', function (req, res) {
     if (err) {
       console.log("Retrieval error: ", err);
     } else {
-      res.render('users/index', {
-        users: allUsersArray,
-        // userId: req.session.userId || "guest",
-        // userName: req.session.userName || "Guest"
-      });
+      res.render('users/index');
     }
   });
 }
@@ -116,7 +105,7 @@ router.post('/', function (req, res) {
             var newUser = new User({
               email: userParams.email,
               name: userParams.name,
-              passwordDigest: hash // note, replace password w/ passwordDigest in schema
+              passwordDigest: hash
             });
 
             newUser.save(function (saveErr, savedUser) {
@@ -166,17 +155,3 @@ router.patch('/:id', function (req, res) {
 
 // export router
 module.exports = router;
-
-// CODE BELOW CREATES USERS WITHOUT HASHING PASSWORDS
-// User.findOrCreateByEmail(userParams, function (err, user) {
-//   if (err) {
-//     console.log(err);
-//     req.session.flash.message = "Some error has occurred.";
-//     res.redirect(302, '/users/new');
-//   } else {
-//     req.session.flash.message = "Sign up successful!";
-//     req.session.userId = user._id;
-//     // could also use user name
-//     res.redirect(302, '/users/' + user._id);
-//   }
-// });
