@@ -21,6 +21,7 @@ server.use('/users', require('./controllers/users.js'));
 server.use('/articles', require('./controllers/articles.js'));
 
 /* define default welcome page route */
+/* redefine your routes so that you only check for userId once and not on every single route every time */
 server.get('/', function (req, res) {
   if (req.session.userId) {
     res.redirect(302, '/articles');

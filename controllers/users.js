@@ -29,9 +29,7 @@ router.get('/:id', function (req, res) {
         res.redirect(302, '/');
       } else if (user) {
         res.render('users/show', {
-          user: user,
-          // userId: req.session.userId || "guest",
-          // userName: req.session.userName || "Guest"
+          user: user
         });
       } else {
         res.redirect(302, '/');

@@ -1,7 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
 <div class="card ">
   <div class="card-content black-text">
 <form action="/articles" method="post">
-  <div class="row">
         <div class="input-field col s6">
           <input type='text' id='title' class="validate"
                  name='article[published][title]'>
@@ -13,9 +15,10 @@
           <label for="authorName">Author Name</label>
         </div>
         <div class="input-field col s12">
+          <label for="article-content">Article content</label><br/>
            <textarea id='article-content'
-                     name='article[published][content]'></textarea><br/>
-           <label for="article-content">Article content</label>
+                     name='article[published][content]'
+                     placeholder="remember, please be nice..."></textarea>
         </div>
         <div class="input-field col s12">
           <input id="tags" type="text" name='article[published][tags]'>
@@ -24,7 +27,6 @@
         <button class="btn blue waves-effect waves-light" type="submit" name="action">Submit
           <i class="material-icons right">send</i>
         </button>
-      </div>
 </form>
 <script src='/scripts/autosize.min.js'></script>
   <script>
@@ -32,11 +34,6 @@
   </script>
   </div>
 </div>
-  <!-- <input type="checkbox" name="article[tags][]" id="funny" value="funny"/>
-  <label for="funny">funny</label>
-  <input type="checkbox" name="article[tags][]" id="true" value="true"/>
-  <label for="true">true</label>
-  <input type="checkbox" name="article[tags][]" id="sarcastic" value="sarcastic"/>
-  <label for="sarcastic">sarcastic</label>
-  <input type="checkbox" name="article[tags][]" id="sincere" value="sincere"/>
-  <label for="sincere">sincere</label><br/> -->
+    </div>
+  </div>
+</div>

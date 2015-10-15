@@ -1,20 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      
 <div class="card ">
   <div class="card-content black-text">
 <form action="/articles/<%= article._id %>?_method=PATCH" method="post">
-<label>Article title</label>
-  <input type='text'
-         name='article[title]'
-         value="<%= article.published.title %>"><br/>
- <label>Article content goes here</label>
- <textarea id='article-content' name='article[content]'><%= article.published.content %></textarea><br/>
-  <label>Tags</label><br/>
-  <input type="text" name="article[tags]" value="<%= article.published.tags %>"/>
-    <label>Last Edited</label>
-    <input disabled type='text'
-           value="<%= article.published.last_edited || "never" %>"><br/>
-    <label>Author</label>
-   <input disabled type='text'
-          value="<%= article.authorName %>"><br/>
+  <div class="input-field col s6">
+    <input type='text' id='title' class="validate"
+           name='article[title]'
+           value="<%= article.published.title %>">
+    <label for="title">Article Title</label>
+  </div>
+  <div class="input-field col s6">
+    <input disabled id="authorName" type="text" name='article[authorName]'
+    class="validate" value="<%= article.authorName %>">
+    <label for="authorName">Author</label>
+  </div>
+  <div class="input-field col s12">
+    <label for="article-content">Article content</label><br/>
+     <textarea id='article-content'
+               name='article[content]'><%= article.published.content %></textarea>
+  </div>
+  <div class="input-field col s12">
+    <input id="tags" type="text" name='article[tags]'
+    value="<%= article.published.tags %>">
+    <label for="tags">tags, comma separated</label>
+  </div>
+  <div class="input-field col s12">
+    <input disabled type='text' id="last_edited"
+           value="<%= article.published.last_edited || "never" %>">
+    <label for="last_edited">Last Edited</label>
+  </div>
   <button class="btn blue waves-effect waves-light" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
   </button>
@@ -25,5 +41,9 @@
   <script>
      autosize(document.getElementById('article-content'));
   </script>
+  </div>
+</div>
+
+    </div>
   </div>
 </div>

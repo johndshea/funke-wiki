@@ -1,49 +1,82 @@
-<div class="article card hoverable">
-  <div class="card-content black-text">
-    <h5><%= article.published.title %></h5>
-    <hr/>
-    <div class="flow-text"><%- content %></div>
-    <hr/>
-    Author: <%= article.authorName %><br/>
-    Tags: <%= article.published.tags.join(', ') %> <br/>
-    Last Edited: <%= article.published.last_edited || "never" %> <br/>
-  </div>
-  <div class="card-action">
-    <a href="/articles/<%= article._id %>/edit">Edit this article</a>
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#master">Article</a></li>
+        <li class="tab col s3"><a href="#drafts">Drafts</a></li>
+        <li class="tab col s3"><a href="#archives">Archives</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- Change the foreach loop to be a decrementing for loop - should fix the backward edit/draft ordering problem -->
-<ul class="collapsible hoverable" data-collapsible="accordion">
-  <% for (i = article.drafts.length - 1; i >= 0; i--) { %>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">spellcheck</i>Draft # <%= i + 1 %> </div>
-        <div class="collapsible-body">
-          <p>
-            <%= article.drafts[i].title %>
-            <span class="title truncate"> <%= article.drafts[i].content %> </span>
-            Tags: <%= article.drafts[i].tags.join(', ') || "none" %> <br/>
-            Editor: <%= article.drafts[i].editorName || "Anonymous" %><br/>
-            Last Edited: <%= article.drafts[i].last_edited || "never" %> <br/>
-          </p>
+<div class="container" id="master">
+  <div class="row">
+    <div class="col s12">
+      <div class="article card hoverable">
+        <div class="card-content black-text">
+          <h5><%= article.published.title %></h5>
+          <hr/>
+          <div class="flow-text"><%- content %></div>
+          <hr/>
+          Author: <%= article.authorName %><br/>
+          Tags: <%= article.published.tags.join(', ') %> <br/>
+          Last Edited: <%= article.published.last_edited || "never" %> <br/>
         </div>
-      </li>
-  <% } %>
-</ul>
+        <div class="card-action">
+          <a href="/articles/<%= article._id %>/edit">Edit this article</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<ul class="collapsible hoverable" data-collapsible="accordion">
-  <% for (i = article.history.length - 1; i >= 0; i--) { %>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i + 1 %> </div>
-        <div class="collapsible-body">
-          <p>
-            <%= article.history[i].title %>
-            <span class="title truncate"> <%= article.history[i].content %> </span>
-            Tags: <%= article.history[i].tags.join(', ') || "none" %> <br/>
-            Editor: <%= article.history[i].editorName || "Anonymous" %><br/>
-            Last Edited: <%= article.history[i].last_edited || "never" %> <br/>
-          </p>
-        </div>
-      </li>
-  <% } %>
-</ul>
+<div class="container" id="drafts">
+  <div class="row">
+    <div class="col s12">
+      <ul class="collapsible hoverable popout" data-collapsible="accordion">
+        <% for (i = article.drafts.length - 1; i >= 0; i--) { %>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">spellcheck</i>Draft # <%= i + 1 %><span class="right">
+                <i class="material-icons">thumbs_up_down</i><%= article.drafts[i].upvotes%> up,
+                <%= article.drafts[i].downvotes%> down,
+                <%= article.drafts[i].comments.length%> comments</span>
+              </div>
+              <div class="collapsible-body">
+                <p>
+                  <%= article.drafts[i].title %>
+                  <span class="title truncate"> <%= article.drafts[i].content %> </span>
+                  Tags: <%= article.drafts[i].tags.join(', ') || "none" %> <br/>
+                  Editor: <%= article.drafts[i].editorName || "Anonymous" %><br/>
+                  Last Edited: <%= article.drafts[i].last_edited || "never" %> <br/>
+                </p>
+              </div>
+            </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="archives">
+  <div class="row">
+    <div class="col s12">
+      <ul class="collapsible hoverable popout" data-collapsible="accordion">
+        <% for (i = article.history.length - 1; i >= 0; i--) { %>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i + 1 %> </div>
+              <div class="collapsible-body">
+                <p>
+                  <%= article.history[i].title %>
+                  <span class="title truncate"> <%= article.history[i].content %> </span>
+                  Tags: <%= article.history[i].tags.join(', ') || "none" %> <br/>
+                  Editor: <%= article.history[i].editorName || "Anonymous" %><br/>
+                  Last Edited: <%= article.history[i].last_edited || "never" %> <br/>
+                </p>
+              </div>
+            </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</div>

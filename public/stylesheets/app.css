@@ -46,7 +46,7 @@ main {
   color:black;
 }
 
-input {
+button {
 	background:none;
   border:none;
   color:white;
@@ -54,7 +54,7 @@ input {
 }
 
 .peek {
-	height:300px;
+	height:320px;
 }
 
 @media print {

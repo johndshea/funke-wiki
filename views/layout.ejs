@@ -18,17 +18,12 @@ http://materializecss.com/templates/starter-template/preview.html -->
 
   <%- include header %>
 
-  <div class="container">
     <!-- Displays a flash message from the prior page, if it exists. Credit to Shorty (Matt Short) for this idea -->
     <% if (flash.message) { %>
       <%= flash.message %>
     <% } %>
-    <div class="row">
-      <div class="col s12">
+
         <%- body %>
-      </div>
-    </div>
-  </div>
 
   <%- include footer %>
 

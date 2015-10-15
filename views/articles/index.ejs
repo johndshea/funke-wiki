@@ -1,9 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
 <% articles.forEach(function (article, i) { %>
     <div class="article card hoverable">
       <a href="/articles/<%= article._id %>"><div class="card-content black-text">
         <h5><%= article.published.title %></h5>
-        <!-- marked breaks the truncate class -->
-        <span class="title truncate"> <%- marked(article.published.content) %> </span>
+        <!-- marked breaks the truncate class, which is why I don't use it here -->
+        <span class="title truncate"> <%- article.published.content %> </span>
         Author: <%= article.authorName || "Anonymous" %><br/>
         Tags: <%= article.published.tags.join(', ') || "none" %> <br/>
         Last Edited: <%= article.published.last_edited || "never" %> <br/>
@@ -14,3 +17,6 @@
       </div>
     </div>
   <% }) %>
+    </div>
+  </div>
+</div>
