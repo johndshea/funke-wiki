@@ -19,10 +19,7 @@ router.get('/', function (req, res) {
         console.log("Retrieval error: ", err);
       } else {
         res.render('articles/index', {
-          articles: allArticlesArray,
-        //REMOVE ALL OF THESE SINCE YOU NOW ARE USING THE LOCALS ROUTE
-          // userId: req.session.userId || "guest",
-          // userName: req.session.userName || "Guest"
+          articles: allArticlesArray
         });
       }
     });
@@ -38,9 +35,7 @@ router.get('/new', function (req, res) {
         res.redirect(302, '/');
       } else if (user) {
         res.render('articles/new', {
-          user: user,
-          // userId: req.session.userId || "guest",
-          // userName: req.session.userName || "Guest"
+          user: user
         });
       }
     });
@@ -84,9 +79,7 @@ router.get('/:id', function (req, res) {
      		} else {
         		res.render('articles/show', {
           		article: specificArticle,
-              content: marked(specificArticle.published.content),
-              // userId: req.session.userId || "guest",
-              // userName: req.session.userName || "Guest"
+              content: marked(specificArticle.published.content)
         		});
   	      }
     	});
@@ -103,16 +96,12 @@ router.get('/:id/edit', function (req, res) {
         		console.log("Retrieval error: ", err);
      		} else {
         		res.render('articles/edit', {
-          		article: specificArticle,
-              // userId: req.session.userId || "guest",
-              // userName: req.session.userName || "guest"
+          		article: specificArticle
         		});
   	      }
     	});
   }
 });
-
-
 
 // UPDATE
 router.patch('/:id', function (req, res) {
@@ -135,7 +124,6 @@ router.patch('/:id', function (req, res) {
           }
         });
       } else {
-        // Have to insert draft creation stuff here.
         Article.findByIdAndUpdate(req.params.id, {$push: {drafts: newEdit}}, function (err, updatedArticle) {
           if (err) {
             console.log("update error: ", err);
@@ -163,6 +151,11 @@ router.delete('/:id', function (req, res) {
       }
     });
   }
+});
+
+// Don't know how to start a patch request using a button, so am using the GET route. I know, I know...
+router.get('/drafts/delete/:articleId/:draftId', function (req, res) {
+  console.log("attempted to delete draft " + req.params.draftId + " , of Article " + req.params.articleId );
 });
 
 module.exports = router;

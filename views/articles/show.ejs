@@ -48,6 +48,7 @@
               <div class="collapsible-body">
                 <p>
                   <%= article.drafts[i].title %>
+                  <span class="hide"><%= article.drafts[i]._id %></span>
                   <span class="title truncate"> <%= article.drafts[i].content %> </span>
                   Tags: <%= article.drafts[i].tags.join(', ') || "none" %> <br/>
                   Editor: <%= article.drafts[i].editorName || "Anonymous" %><br/>
@@ -57,8 +58,13 @@
                   <a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_up</i>upvote</a>
                   <a class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>downvote</a>
                   <a class="waves-effect waves-light btn blue"><i class="material-icons left">comment</i>comment</a>
-                  
-                  <a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>delete</a>
+                  <!-- displays the delete button only if the current user is
+                  either the original author of the article or the author of this particular edit -->
+                  <% if (article.drafts[i].editorId == userId || article.authorId == userId) { %>
+                    <a class="waves-effect waves-light btn red"
+                       href="/articles/drafts/delete/<%= article._id %>/<%= article.drafts[i]._id %>">
+                       <i class="material-icons left">delete</i>delete</a>
+                  <% } %>
                 </p>
               </div>
             </li>

@@ -30,6 +30,8 @@ e) move currentversion to the archive
 
 BUGS:
 
+* article tabs menu cuts off navbar drop shadow - use CSS to move it down
+
 * on the article index page, using marked() overrides the truncate class. Shorty suggests using a mini body preview?
 
 * fix funky placement of tobias head icon
