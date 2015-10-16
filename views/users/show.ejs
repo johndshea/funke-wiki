@@ -4,32 +4,22 @@
 
 <div class="card ">
   <div class="card-content black-text">
-<h5><%= user.name %></h5>
+<h5>Articles by <%= user.name %></h5> (<%= user.email %>)
 <hr>
-<%= user.email %>
 
-<%= user.articles %>
-
-<%= user.edits %>
-
-<% user.articles.forEach(function (article, i) { %>
-  <div class="articleSnippet">
-    <h3>
-      <a href="/articles/<%= article._id %>"> <%= article.name %> </a> <br/>
-    </h3>
-  </div>
-<% }) %>
-
-<% user.edits.forEach(function (edit, i) { %>
-  <div class="editSnippet">
-    <h3>
-      <a href="/articles/<%= article._id %>#<%= edit._id %>"> <%= article.name %> </a> <br/>
-    </h3>
-  </div>
-<% }) %>
-</div>
-</div>
-
+<% articles.forEach(function (article, i) { %>
+    <div class="article card hoverable">
+      <a href="/articles/<%= article._id %>"><div class="card-content black-text">
+        <h5><%= article.published.title %></h5>
+        <!-- marked breaks the truncate class, which is why I don't use it here -->
+        <span class="title truncate"> <%- article.published.content %> </span>
+        Author: <%= article.authorName || "Anonymous" %><br/>
+        Tags: <%= article.published.tags.join(', ') || "none" %> <br/>
+        Last Edited: <%= article.published.last_edited || "never" %> <br/>
+      </div></a>
+      <div class="card-action">
+        <a href="/articles/<%= article._id %>">View</a>
+        <a href="/articles/<%= article._id %>/edit">Edit</a>
+      </div>
     </div>
-  </div>
-</div>
+  <% }) %>

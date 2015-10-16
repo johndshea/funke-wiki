@@ -14,29 +14,15 @@ c) if total votes is greater than a certain threshold, check ratio. if both chec
 d) set currentversion = the winning draft (use splice so as to remove the draft from the drafts array)
 e) move currentversion to the archive
 
-* then build commenting? store comments in the comment schema you already wrote in each published/draft/archived object.
-
-* get upvote/comment/downvote icons working http://materializecss.com/icons.html
-
-* use populate or something similar to display articles written by a user on that user's profile page
-
-* improve text areas (may have to stop using autosize): http://materializecss.com/forms.html#textarea
+WISH LIST:
 
 * allow authors to lock articles from others' editing?
-
-* set up article delete buttons that appear or disappear based on who is logged in
 
 * sessions are not persistent across server restarts by default. Check the express-session page for ways to do it.
 
 BUGS:
 
-* article tabs menu cuts off navbar drop shadow - use CSS to move it down
-
-* on the article index page, using marked() overrides the truncate class. Shorty suggests using a mini body preview?
-
-* fix funky placement of tobias head icon
-
-* in general, make formatting nicer throughout the site. Use http://materializecss.com/collections.html#circle for user list
+* article tabs menu cuts off navbar drop shadow - use CSS to move it down?
 
 Wireframes:
 

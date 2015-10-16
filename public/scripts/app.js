@@ -4,7 +4,7 @@ $(function(){
 
 var flash = document.getElementById("flash");
 $(document).ready(function(){
-  if (flash.innerText !== '') {
+  if (flash.innerText) {
     Materialize.toast(flash.innerText, 1000);
   }
 });

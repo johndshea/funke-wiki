@@ -3,6 +3,7 @@ var express = require('express'),
     bcrypt  = require('bcrypt'),
     marked  = require('marked'),
     User    = require('../models/user.js');
+    Article    = require('../models/article.js');
 
 // define routes
 router.get('/new', function (req, res) {
@@ -21,9 +22,12 @@ router.get('/:id', function (req, res) {
         req.session.flash.message = "An error has occurred: " + err;
         res.redirect(302, '/');
       } else if (user) {
-        res.render('users/show', {
-          user: user
-        });
+        Article.find({authorId: user._id}, function (err, foundArticles) {
+          res.render('users/show', {
+            user: user,
+            articles: foundArticles
+          });
+        })
       } else {
         res.redirect(302, '/');
       }
@@ -68,7 +72,9 @@ router.get('/', function (req, res) {
     if (err) {
       console.log("Retrieval error: ", err);
     } else {
-      res.render('users/index');
+      res.render('users/index', {
+        users: allUsersArray
+      });
     }
   });
 }

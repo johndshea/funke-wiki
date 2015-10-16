@@ -174,7 +174,6 @@ router.delete('/drafts/delete/:articleId/:draftId', function (req, res) {
 // NEED TO CHANGE THIS TO PREVENT MULTIPLE UPVOTES BY THE SAME PERSON,
 // ONCE I'VE TESTED IT THOROUGHLY
 // Also perhaps consider adding an instant ratification button for the original author?
-// consider http://stackoverflow.com/questions/8987372/incrementing-a-value-with-mongoose
 router.patch('/drafts/upvote/:articleId/:draftId', function (req, res) {
   Article.findById(req.params.articleId,
   function (err, foundArticle) {
