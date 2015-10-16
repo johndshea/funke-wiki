@@ -55,6 +55,12 @@
                   Last Edited: <%= article.drafts[i].last_edited || "never" %> <br/>
                 </p>
                 <p>
+                  <form action="/articles/drafts/delete/<%= article._id %>/<%= article.drafts[i]._id %>?_method=DELETE" method="post"><br/>
+                    <input type="submit" id="delete" class="hide" value="delete">
+                    <label for="delete"><a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>delete</a></label></form>
+                  <form action="/articles/drafts/upvote/<%= article._id %>/<%= article.drafts[i]._id %>?_method=PATCH" method="post"><br/>
+                    <input type="submit" id="upvote" class="hide" value="delete">
+                    <label for="upvote"><a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_up</i>upvote</a></label></form>
                   <a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_up</i>upvote</a>
                   <a class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>downvote</a>
                   <a class="waves-effect waves-light btn blue"><i class="material-icons left">comment</i>comment</a>

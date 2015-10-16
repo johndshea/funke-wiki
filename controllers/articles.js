@@ -153,9 +153,41 @@ router.delete('/:id', function (req, res) {
   }
 });
 
-// Don't know how to start a patch request using a button, so am using the GET route. I know, I know...
-router.get('/drafts/delete/:articleId/:draftId', function (req, res) {
+// Delete a specific draft of an article.
+router.delete('/drafts/delete/:articleId/:draftId', function (req, res) {
   console.log("attempted to delete draft " + req.params.draftId + " , of Article " + req.params.articleId );
+  Article.findById(req.params.articleId,
+  function (err, foundArticle) {
+    if (err) {
+      console.log(err);
+    } else {
+      var remove = foundArticle.drafts.id(req.params.draftId).remove();
+      foundArticle.save(function (err) {
+        if (err) return handleError(err);
+        console.log('the draft was removed');
+      });
+      res.redirect(302, '/articles/' + req.params.articleId);
+    }
+  });
+});
+
+// Upvote a specific draft of an article.
+// consider http://stackoverflow.com/questions/8987372/incrementing-a-value-with-mongoose
+router.patch('/drafts/upvote/:articleId/:draftId', function (req, res) {
+  console.log("attempted to upvote draft " + req.params.draftId + " , of Article " + req.params.articleId );
+  Article.findById(req.params.articleId,
+  function (err, foundArticle) {
+    if (err) {
+      console.log(err);
+    } else {
+      // var upvote = foundArticle.drafts.id(req.params.draftId).upvotes;
+      foundArticle.save(function (err) {
+        if (err) return handleError(err);
+        console.log('the draft was upvoted');
+      });
+      res.redirect(302, '/articles/' + req.params.articleId);
+    }
+  });
 });
 
 module.exports = router;
