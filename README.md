@@ -37,8 +37,9 @@ Wireframes:
 ![](http://cl.ly/image/2W0m0X381U3o/wiki_views_wireframe_2.jpg)
 
 users:
-Finn B, fb@test.com, “finn"
-John S, js@test.com, "john"
+Finn B, fb@test.com
+John S, js@test.com
+Dinah B, db@test.com
 
 Entries:
 John Kim:
