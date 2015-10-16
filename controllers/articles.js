@@ -155,39 +155,86 @@ router.delete('/:id', function (req, res) {
 
 // Delete a specific draft of an article.
 router.delete('/drafts/delete/:articleId/:draftId', function (req, res) {
-  console.log("attempted to delete draft " + req.params.draftId + " , of Article " + req.params.articleId );
   Article.findById(req.params.articleId,
   function (err, foundArticle) {
     if (err) {
       console.log(err);
     } else {
-      var remove = foundArticle.drafts.id(req.params.draftId).remove();
+      foundArticle.drafts.id(req.params.draftId).remove();
       foundArticle.save(function (err) {
         if (err) return handleError(err);
         console.log('the draft was removed');
       });
-      res.redirect(302, '/articles/' + req.params.articleId);
+      res.redirect(302, '/articles/' + req.params.articleId + "#drafts");
     }
   });
 });
 
 // Upvote a specific draft of an article.
+// NEED TO CHANGE THIS TO PREVENT MULTIPLE UPVOTES BY THE SAME PERSON,
+// ONCE I'VE TESTED IT THOROUGHLY
+// Also perhaps consider adding an instant ratification button for the original author?
 // consider http://stackoverflow.com/questions/8987372/incrementing-a-value-with-mongoose
 router.patch('/drafts/upvote/:articleId/:draftId', function (req, res) {
-  console.log("attempted to upvote draft " + req.params.draftId + " , of Article " + req.params.articleId );
   Article.findById(req.params.articleId,
   function (err, foundArticle) {
     if (err) {
       console.log(err);
     } else {
-      // var upvote = foundArticle.drafts.id(req.params.draftId).upvotes;
+      foundArticle.drafts.id(req.params.draftId).upvotes += 1;
       foundArticle.save(function (err) {
         if (err) return handleError(err);
         console.log('the draft was upvoted');
       });
-      res.redirect(302, '/articles/' + req.params.articleId);
+      res.redirect(302, '/articles/' + req.params.articleId + "#drafts");
     }
   });
+});
+
+// Downvote a specific draft of an article.
+router.patch('/drafts/downvote/:articleId/:draftId', function (req, res) {
+  console.log("attempted to downvote draft " + req.params.draftId + " , of Article " + req.params.articleId );
+  Article.findById(req.params.articleId,
+  function (err, foundArticle) {
+    if (err) {
+      console.log(err);
+    } else {
+      foundArticle.drafts.id(req.params.draftId).downvotes += 1;
+      foundArticle.save(function (err) {
+        if (err) return handleError(err);
+        console.log('the draft was upvoted');
+      });
+      res.redirect(302, '/articles/' + req.params.articleId + "#drafts");
+    }
+  });
+});
+
+// Creates a new comment on a particular article master
+router.post('/:articleId/comments/', function (req, res) {
+  if (!req.session.userId) {
+    res.redirect(302, '/users/login');
+  } else {
+    var comment = {};
+    console.log(req.body.comment);
+    comment.authorId = req.session.userId;
+    comment.authorName = req.session.userName;
+    comment.content = req.body.comment;
+    comment.timestamp = new Date ();
+
+    Article.findById(req.params.articleId,
+    function (err, foundArticle) {
+      if (err) {
+        console.log(err);
+      } else {
+        foundArticle.published.comments.push(comment);
+        foundArticle.save(function (err) {
+          if (err) return handleError(err);
+          console.log('the comment was saved');
+        });
+        res.redirect(302, '/articles/' + req.params.articleId);
+      }
+    });
+  }
 });
 
 module.exports = router;

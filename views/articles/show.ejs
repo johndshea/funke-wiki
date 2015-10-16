@@ -3,8 +3,8 @@
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active" href="#master">Article</a></li>
-        <li class="tab col s3"><a href="#drafts">Drafts</a></li>
-        <li class="tab col s3"><a href="#archives">Archives</a></li>
+        <li class="tab col s3"><a href="#drafts"> <%= article.drafts.length %> Drafts</a></li>
+        <li class="tab col s3"><a href="#archives"> <%= article.history.length %> Archives</a></li>
       </ul>
     </div>
   </div>
@@ -27,7 +27,16 @@
           <a href="/articles/<%= article._id %>/edit">Edit this article</a>
         </div>
         <div class="card-action">
-          Comments section goes here
+          <% for (i = article.published.comments.length - 1; i >= 0; i--) { %>
+            <hr/>at <%= article.published.comments[i].timestamp %>, <%= article.published.comments[i].authorName %> says: <%= article.published.comments[i].content %><hr/><br/>
+
+          <% } %>
+        </div>
+        <div class="card-action">
+          <form action="/articles/<%= article._id %>/comments/" method="post">
+            <div class="input-field col s12"><textarea name="comment" class="materialize-textarea"></textarea></div>
+            <input type="submit" id="submitComment" class="hide">
+            <label for="submitComment"><a class="waves-effect waves-light btn blue"><i class="material-icons left">comment</i>add comment</a></label></form>
         </div>
       </div>
     </div>
@@ -47,31 +56,42 @@
               </div>
               <div class="collapsible-body">
                 <p>
-                  <%= article.drafts[i].title %>
-                  <span class="hide"><%= article.drafts[i]._id %></span>
-                  <span class="title truncate"> <%= article.drafts[i].content %> </span>
+                  Title: <%= article.drafts[i].title %><br/>
+                  Content: <%= article.drafts[i].content %><br/>
                   Tags: <%= article.drafts[i].tags.join(', ') || "none" %> <br/>
                   Editor: <%= article.drafts[i].editorName || "Anonymous" %><br/>
                   Last Edited: <%= article.drafts[i].last_edited || "never" %> <br/>
                 </p>
-                <p>
-                  <form action="/articles/drafts/delete/<%= article._id %>/<%= article.drafts[i]._id %>?_method=DELETE" method="post"><br/>
-                    <input type="submit" id="delete" class="hide" value="delete">
-                    <label for="delete"><a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>delete</a></label></form>
-                  <form action="/articles/drafts/upvote/<%= article._id %>/<%= article.drafts[i]._id %>?_method=PATCH" method="post"><br/>
-                    <input type="submit" id="upvote" class="hide" value="delete">
+                <div>
+                  <form action="/articles/drafts/upvote/<%= article._id %>/<%= article.drafts[i]._id %>?_method=PATCH"
+                        class="formOverride"
+                        method="post">
+                    <input type="submit" id="upvote" class="hide">
                     <label for="upvote"><a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_up</i>upvote</a></label></form>
-                  <a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_up</i>upvote</a>
-                  <a class="waves-effect waves-light btn red"><i class="material-icons left">thumb_down</i>downvote</a>
-                  <a class="waves-effect waves-light btn blue"><i class="material-icons left">comment</i>comment</a>
+                  <form action="/articles/drafts/downvote/<%= article._id %>/<%= article.drafts[i]._id %>?_method=PATCH"
+                    class="formOverride"
+                    method="post">
+                    <input type="submit" id="downvote" class="hide">
+                    <label for="downvote"><a class="waves-effect waves-light btn green"><i class="material-icons left">thumb_down</i>downvote</a></label></form>
                   <!-- displays the delete button only if the current user is
                   either the original author of the article or the author of this particular edit -->
                   <% if (article.drafts[i].editorId == userId || article.authorId == userId) { %>
-                    <a class="waves-effect waves-light btn red"
-                       href="/articles/drafts/delete/<%= article._id %>/<%= article.drafts[i]._id %>">
-                       <i class="material-icons left">delete</i>delete</a>
-                  <% } %>
-                </p>
+                    <form action="/articles/drafts/delete/<%= article._id %>/<%= article.drafts[i]._id %>?_method=DELETE"
+                      class="formOverride"
+                      method="post">
+                      <input type="submit" id="delete" class="hide">
+                      <label for="delete"><a class="waves-effect waves-light btn red"><i class="material-icons left">delete</i>delete</a></label></form>
+                  <% } %><br/>
+                  <!-- DIDN'T HAVE TIME TO FINISH ADDING A COMMENTS SECTION TO DRAFTS -->
+                  <!-- <div class="card-action">
+                    Comments section goes here
+                  </div>
+                  <div class="card-content">
+                    <form action="/articles/<%= article._id %>/comments/" method="post">
+                      <div class="input-field"><textarea name="comment" class="materialize-textarea"></textarea></div>
+                      <input type="submit" id="submitComment" class="hide">
+                      <label for="submitComment"><a class="waves-effect waves-light btn blue"><i class="material-icons left">comment</i>add comment</a></label></form>
+                  </div> -->
               </div>
             </li>
         <% } %>
@@ -89,8 +109,8 @@
               <div class="collapsible-header active"><i class="material-icons">settings_backup_restore</i>Archived Version # <%= i + 1 %> </div>
               <div class="collapsible-body">
                 <p>
-                  <%= article.history[i].title %>
-                  <span class="title truncate"> <%= article.history[i].content %> </span>
+                  Title: <%= article.history[i].title %><br/>
+                  Content: <%= article.history[i].content %><br/>
                   Tags: <%= article.history[i].tags.join(', ') || "none" %> <br/>
                   Editor: <%= article.history[i].editorName || "Anonymous" %><br/>
                   Last Edited: <%= article.history[i].last_edited || "never" %> <br/>
